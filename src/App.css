@@ -1,3 +1,20 @@
 .App {
   font-size: medium;
 }
+
+.EmotionButton {
+  height: 25px;
+  width: 50px;
+  background-color: white;
+  border: 1px black solid;
+  border-radius: 20px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px #999;
+}
+
+.EmotionButton-selected {
+  background-color: #f1cbff;
+}
