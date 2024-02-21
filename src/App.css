@@ -1,6 +1,97 @@
 .App {
   font-size: medium;
 }
+.container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+.main {
+  flex: 5;
+  height: 100%;
+}
+
+.MenuBar {
+  flex: 1;
+  border-right: 1px solid black;
+}
+
+.SideBar {
+  flex: 3;
+  border-left: 1px solid black;
+  padding: 0px 10px 0px 10px;
+}
+
+.MenuBar,
+.SideBar {
+  @media (max-width: 480px) {
+    display: none;
+  }
+}
+
+.Header {
+  display: flex;
+  height: 30px;
+  border-bottom: 1px solid black;
+}
+
+.header-left-icon {
+  background-image: url("/public/assets/menu.svg");
+  height: 30px;
+  width: 30px;
+  background-size: cover;
+}
+
+.header-title {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.header-right-icon {
+  height: 30px;
+  width: 30px;
+}
+
+.MobileBottomBar {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  border-top: 1px solid black;
+  @media (min-width: 480px) {
+    display: none;
+  }
+}
+
+.bottom-item {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.write-icon {
+  background-image: url("/public/assets/write.svg");
+  height: 15px;
+  width: 15px;
+  background-size: cover;
+}
+.home-icon {
+  background-image: url("/public/assets/home.svg");
+  height: 15px;
+  width: 15px;
+  background-size: cover;
+}
+.profile-icon {
+  background-image: url("/public/assets/profile.svg");
+  height: 15px;
+  width: 15px;
+  background-size: cover;
+}
 
 .EmotionButton {
   height: 25px;
