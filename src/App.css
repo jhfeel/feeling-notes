@@ -1,6 +1,8 @@
 .App {
   font-size: medium;
 }
+
+/* 공통 컴포넌트 */
 .container {
   display: flex;
   width: 100%;
@@ -110,4 +112,9 @@
 
 .EmotionButton-selected {
   background-color: #f1cbff;
+}
+
+/* NoteItem */
+.selected-emotions-list {
+  display: flex;
 }
