@@ -80,12 +80,14 @@
   width: 15px;
   background-size: cover;
 }
+
 .home-icon {
   background-image: url("/public/assets/home.svg");
   height: 15px;
   width: 15px;
   background-size: cover;
 }
+
 .profile-icon {
   background-image: url("/public/assets/profile.svg");
   height: 15px;
