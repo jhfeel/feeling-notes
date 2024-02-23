@@ -1,3 +1,7 @@
+body {
+  margin: 0;
+}
+
 .App {
   font-size: medium;
 }
@@ -6,21 +10,21 @@
 .container {
   display: flex;
   width: 100%;
-  height: 100vh;
-}
-
-.main {
-  flex: 5;
-  height: 100%;
 }
 
 .MenuBar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
   flex: 1;
+  min-width: fit-content;
+  background-color: lightcyan;
   border-right: 1px solid black;
 }
 
 .SideBar {
   flex: 3;
+  background-color: lightcyan;
   border-left: 1px solid black;
   padding: 0px 10px 0px 10px;
 }
@@ -32,9 +36,17 @@
   }
 }
 
+.main {
+  flex: 5;
+  height: 100%;
+}
+
 .Header {
   display: flex;
-  height: 30px;
+  position: sticky;
+  top: 0;
+  height: 40px;
+  background-color: lightcyan;
   border-bottom: 1px solid black;
 }
 
@@ -57,13 +69,14 @@
 }
 
 .MobileBottomBar {
-  display: flex;
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   height: 40px;
+  display: flex;
   border-top: 1px solid black;
+  background-color: lightcyan;
   @media (min-width: 480px) {
     display: none;
   }
@@ -115,6 +128,10 @@
 }
 
 /* NoteItem */
+.NoteItem {
+  border-bottom: 1px solid black;
+}
+
 .selected-emotions-list {
   display: flex;
 }

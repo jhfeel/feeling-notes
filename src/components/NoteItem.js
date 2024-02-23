@@ -1,6 +1,8 @@
+import { formatTimestamp } from "../utils/formatTimestamp";
 import EmotionButton from "./EmotionButton";
 
-const NoteItem = ({ dateTime, situation, emotions }) => {
+const NoteItem = ({ timestamp, situation, emotions }) => {
+  const dateTime = formatTimestamp(timestamp);
   const emotionList = [];
   emotions.forEach((emotion) => {
     emotionList.push(<EmotionButton emotionName={emotion} isSelected={true} />);
