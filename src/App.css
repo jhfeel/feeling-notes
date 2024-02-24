@@ -131,3 +131,8 @@ body {
 .selected-emotions-list {
   display: flex;
 }
+
+/* 작성 페이지 */
+.emotionButtonList-container {
+  display: flex;
+}
