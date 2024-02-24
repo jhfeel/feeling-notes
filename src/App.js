@@ -7,7 +7,6 @@ import Detail from "./pages/Detail";
 
 function App() {
   return (
-    // <Home />
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
