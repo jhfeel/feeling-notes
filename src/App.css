@@ -2,10 +2,6 @@ body {
   margin: 0;
 }
 
-.App {
-  font-size: medium;
-}
-
 /* 공통 컴포넌트 */
 .container {
   display: flex;
