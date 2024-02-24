@@ -2,6 +2,7 @@ import Header from "../components/Header";
 import MenuBar from "../components/MenuBar";
 import MobileBottomBar from "../components/MobileBottomBar";
 import SideBar from "../components/SideBar";
+import { formatDateTime } from "../utils/dateTime";
 
 const Write = () => {
   return (
@@ -11,7 +12,11 @@ const Write = () => {
         <Header />
         <div className="contents-container">
           <h4>언제인가요?</h4>
-          <input></input>
+          <input
+            type="datetime-local"
+            name="dateTime"
+            value={formatDateTime(new Date())}
+          ></input>
           <h4>어떤 상황이었나요?</h4>
           <textarea />
           <h4>그때, 어떤 감정을 느꼈나요?</h4>

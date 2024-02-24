@@ -1,4 +1,4 @@
-import { formatTimestamp } from "../utils/formatTimestamp";
+import { formatTimestamp } from "../utils/dateTime";
 import EmotionButton from "./EmotionButton";
 
 const NoteItem = ({ timestamp, situation, emotions }) => {
