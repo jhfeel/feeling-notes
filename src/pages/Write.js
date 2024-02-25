@@ -39,7 +39,9 @@ const Write = () => {
   const emotionButtonList = [];
 
   emotionList.forEach((emotion) => {
-    emotionButtonList.push(<EmotionButton emotionName={emotion} />);
+    emotionButtonList.push(
+      <EmotionButton emotionName={emotion} currentPage={"write"} />
+    );
   });
 
   return (

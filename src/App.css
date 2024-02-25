@@ -135,4 +135,5 @@ body {
 /* 작성 페이지 */
 .emotionButtonList-container {
   display: flex;
+  flex-wrap: wrap;
 }

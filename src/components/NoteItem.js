@@ -5,7 +5,13 @@ const NoteItem = ({ timestamp, situation, emotions }) => {
   const dateTime = formatTimestamp(timestamp);
   const emotionList = [];
   emotions.forEach((emotion) => {
-    emotionList.push(<EmotionButton emotionName={emotion} isSelected={true} />);
+    emotionList.push(
+      <EmotionButton
+        emotionName={emotion}
+        isSelected={true}
+        currentPage={"home"}
+      />
+    );
   });
 
   return (
