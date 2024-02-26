@@ -7,7 +7,7 @@ import SideBar from "../components/SideBar";
 import { formatDateTime } from "../utils/dateTime";
 import ActionButton from "../components/ActionButton";
 
-const Write = () => {
+const Write = ({ onCreate }) => {
   const [dateTime, setDateTime] = useState(formatDateTime(new Date()));
   const [situation, setSituation] = useState("");
   const [selectedEmotionList, setSelectedEmotionList] = useState([]);
@@ -46,9 +46,10 @@ const Write = () => {
 
   const emotionButtonList = [];
 
-  emotionList.forEach((emotion) => {
+  emotionList.forEach((emotion, index) => {
     emotionButtonList.push(
       <EmotionButton
+        key={index}
         emotionName={emotion}
         currentPage={"write"}
         onSelectedEmotionListChange={setSelectedEmotionList}
@@ -95,6 +96,19 @@ const Write = () => {
             }}
           />
         </div>
+        <ActionButton type={"cancel"} />
+        <ActionButton
+          type={"submit"}
+          onClick={() => {
+            onCreate({
+              dateTime,
+              situation,
+              emotions: selectedEmotionList,
+              thoughts,
+              memo,
+            });
+          }}
+        />
         <MobileBottomBar />
       </div>
       <SideBar />
