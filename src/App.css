@@ -123,6 +123,14 @@ body {
   background-color: #f1cbff;
 }
 
+.ActionButton {
+  border: 1px solid black;
+  height: 30px;
+  width: 70px;
+  border-radius: 4px;
+  box-shadow: 0 1px #999;
+}
+
 /* NoteItem */
 .NoteItem {
   border-bottom: 1px solid black;
