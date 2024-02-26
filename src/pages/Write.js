@@ -1,11 +1,12 @@
+import { useState } from "react";
 import EmotionButton from "../components/EmotionButton";
 import Header from "../components/Header";
 import MenuBar from "../components/MenuBar";
 import MobileBottomBar from "../components/MobileBottomBar";
 import SideBar from "../components/SideBar";
-import { formatDateTime } from "../utils/dateTime";
 
 const Write = () => {
+  const [selectedEmotionList, setSelectedEmotionList] = useState([]);
   const emotionList = [
     "감사 🙏",
     "만족 😌",
@@ -40,10 +41,15 @@ const Write = () => {
 
   emotionList.forEach((emotion) => {
     emotionButtonList.push(
-      <EmotionButton emotionName={emotion} currentPage={"write"} />
+      <EmotionButton
+        emotionName={emotion}
+        currentPage={"write"}
+        onSelectedEmotionListChange={setSelectedEmotionList}
+      />
     );
   });
 
+  console.log(selectedEmotionList);
   return (
     <div className="container">
       <MenuBar />
@@ -51,11 +57,7 @@ const Write = () => {
         <Header />
         <div className="contents-container">
           <h4>언제인가요?</h4>
-          <input
-            type="datetime-local"
-            name="dateTime"
-            value={formatDateTime(new Date())}
-          ></input>
+          <input type="datetime-local" name="dateTime"></input>
           <h4>어떤 상황이었나요?</h4>
           <textarea />
           <h4>그때, 어떤 감정을 느꼈나요?</h4>
