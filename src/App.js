@@ -105,7 +105,7 @@ function App() {
         <Route path="/" element={<Home noteEntries={noteEntries} />} />
         <Route path="/write" element={<Write onCreate={onCreate} />} />
         <Route path="/edit" element={<Edit />} />
-        <Route path="/detail" element={<Detail />} />
+        <Route path="/detail/:id" element={<Detail />} />
       </Routes>
     </BrowserRouter>
   );

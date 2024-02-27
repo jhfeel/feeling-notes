@@ -15,6 +15,7 @@ const Home = ({ noteEntries }) => {
     rows.push(
       <NoteItem
         key={index}
+        id={item.id}
         timestamp={item.timestamp}
         situation={item.situation}
         emotions={item.emotions}
