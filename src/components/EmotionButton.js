@@ -34,7 +34,9 @@ const EmotionButton = ({
     <button
       className={[
         "EmotionButton",
-        isSelected || currentPage === "home" ? "EmotionButton-selected" : "",
+        isSelected || currentPage === "home" || currentPage === "detail"
+          ? "EmotionButton-selected"
+          : "",
       ].join(" ")}
       onClick={handleClick}
     >
