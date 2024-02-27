@@ -6,13 +6,15 @@ import MobileBottomBar from "../components/MobileBottomBar";
 import SideBar from "../components/SideBar";
 import { formatDateTime } from "../utils/dateTime";
 import ActionButton from "../components/ActionButton";
+import { useNavigate } from "react-router-dom";
 
 const Write = ({ onCreate }) => {
-  const [dateTime, setDateTime] = useState(formatDateTime(new Date()));
+  const [dateTime, setDateTime] = useState(new Date());
   const [situation, setSituation] = useState("");
   const [selectedEmotionList, setSelectedEmotionList] = useState([]);
   const [thoughts, setThoughts] = useState("");
   const [memo, setMemo] = useState("");
+  const navigate = useNavigate();
 
   const emotionList = [
     "감사 🙏",
@@ -57,6 +59,20 @@ const Write = ({ onCreate }) => {
     );
   });
 
+  const handleSubmitButtonClick = () => {
+    if (window.confirm("새 노트를 만드시겠습니까?")) {
+      onCreate({
+        timestamp: dateTime.getTime(),
+        situation,
+        emotions: selectedEmotionList,
+        thoughts,
+        memo,
+      });
+
+      navigate("/");
+    }
+  };
+
   return (
     <div className="container">
       <MenuBar />
@@ -67,7 +83,7 @@ const Write = ({ onCreate }) => {
           <input
             type="datetime-local"
             name="dateTime"
-            value={dateTime}
+            value={formatDateTime(dateTime)}
             onChange={(e) => {
               setDateTime(e.target.value);
             }}
@@ -97,18 +113,7 @@ const Write = ({ onCreate }) => {
           />
         </div>
         <ActionButton type={"cancel"} />
-        <ActionButton
-          type={"submit"}
-          onClick={() => {
-            onCreate({
-              dateTime,
-              situation,
-              emotions: selectedEmotionList,
-              thoughts,
-              memo,
-            });
-          }}
-        />
+        <ActionButton type={"submit"} onClick={handleSubmitButtonClick} />
         <MobileBottomBar />
       </div>
       <SideBar />
