@@ -4,9 +4,10 @@ import EmotionButton from "./EmotionButton";
 const NoteItem = ({ timestamp, situation, emotions }) => {
   const dateTime = formatTimestamp(timestamp);
   const emotionList = [];
-  emotions.forEach((emotion) => {
+  emotions.forEach((emotion, index) => {
     emotionList.push(
       <EmotionButton
+        key={index}
         emotionName={emotion}
         isSelected={true}
         currentPage={"home"}

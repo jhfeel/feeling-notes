@@ -11,9 +11,10 @@ const Home = ({ noteEntries }) => {
   });
   const rows = [];
 
-  noteList.forEach((item) => {
+  noteList.forEach((item, index) => {
     rows.push(
       <NoteItem
+        key={index}
         timestamp={item.timestamp}
         situation={item.situation}
         emotions={item.emotions}
