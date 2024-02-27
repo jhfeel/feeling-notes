@@ -99,6 +99,13 @@ function App() {
     setLastNoteId(lastNoteId + 1);
   };
 
+  const onRemove = (targetNoteId) => {
+    setNoteEntries(
+      noteEntries.filter((note) => note.id !== Number(targetNoteId))
+    );
+  };
+
+  console.log(lastNoteId);
   return (
     <BrowserRouter>
       <Routes>
@@ -107,7 +114,7 @@ function App() {
         <Route path="/edit/:id" element={<Edit />} />
         <Route
           path="/detail/:id"
-          element={<Detail noteEntries={noteEntries} />}
+          element={<Detail noteEntries={noteEntries} onRemove={onRemove} />}
         />
       </Routes>
     </BrowserRouter>

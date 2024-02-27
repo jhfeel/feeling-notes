@@ -7,7 +7,7 @@ import { formatTimestamp } from "../utils/dateTime";
 import EmotionButton from "../components/EmotionButton";
 import ActionButton from "../components/ActionButton";
 
-const Detail = ({ noteEntries }) => {
+const Detail = ({ noteEntries, onRemove }) => {
   const navigate = useNavigate();
   const { id } = useParams();
   const noteItem = noteEntries.find((item) => item.id === Number(id));
@@ -21,6 +21,14 @@ const Detail = ({ noteEntries }) => {
 
   const handleEditButtonClick = () => {
     navigate(`/edit/${id}`);
+  };
+
+  const handleRemoveButtonClick = () => {
+    if (window.confirm("정말로 삭제하시겠습니까?")) {
+      onRemove(id);
+
+      navigate("/");
+    }
   };
 
   return (
@@ -40,7 +48,7 @@ const Detail = ({ noteEntries }) => {
           <h4>메모</h4>
           <div>{noteItem.memo}</div>
           <ActionButton type={"edit"} onClick={handleEditButtonClick} />
-          <ActionButton type={"remove"} />
+          <ActionButton type={"remove"} onClick={handleRemoveButtonClick} />
         </div>
         <MobileBottomBar />
       </div>
