@@ -59,6 +59,12 @@ const Write = ({ onCreate }) => {
     );
   });
 
+  const handleCancleButtonClick = () => {
+    if (window.confirm("작성을 취소하시겠습니까?")) {
+      navigate("/");
+    }
+  };
+
   const handleSubmitButtonClick = () => {
     if (window.confirm("새 노트를 만드시겠습니까?")) {
       onCreate({
@@ -112,7 +118,7 @@ const Write = ({ onCreate }) => {
             }}
           />
         </div>
-        <ActionButton type={"cancel"} />
+        <ActionButton type={"cancel"} onClick={handleCancleButtonClick} />
         <ActionButton type={"submit"} onClick={handleSubmitButtonClick} />
         <MobileBottomBar />
       </div>
