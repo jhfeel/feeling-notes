@@ -145,3 +145,8 @@ body {
   display: flex;
   flex-wrap: wrap;
 }
+
+/* 클릭 가능한 요소 */
+.clickable {
+  cursor: pointer;
+}
