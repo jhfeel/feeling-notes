@@ -2,19 +2,26 @@ import Header from "../components/Header";
 import MenuBar from "../components/MenuBar";
 import MobileBottomBar from "../components/MobileBottomBar";
 import SideBar from "../components/SideBar";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { formatTimestamp } from "../utils/dateTime";
 import EmotionButton from "../components/EmotionButton";
+import ActionButton from "../components/ActionButton";
 
 const Detail = ({ noteEntries }) => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const noteItem = noteEntries.find((item) => item.id === Number(id));
   const emotionList = [];
+
   noteItem.emotions.forEach((emotion, index) => {
     emotionList.push(
       <EmotionButton key={index} emotionName={emotion} currentPage={"detail"} />
     );
   });
+
+  const handleEditButtonClick = () => {
+    navigate(`/edit/${id}`);
+  };
 
   return (
     <div className="container">
@@ -32,6 +39,8 @@ const Detail = ({ noteEntries }) => {
           <div>{noteItem.thoughts}</div>
           <h4>메모</h4>
           <div>{noteItem.memo}</div>
+          <ActionButton type={"edit"} onClick={handleEditButtonClick} />
+          <ActionButton type={"remove"} />
         </div>
         <MobileBottomBar />
       </div>
