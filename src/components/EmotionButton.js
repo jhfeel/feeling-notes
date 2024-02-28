@@ -1,12 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const EmotionButton = ({
   emotionName,
   currentPage,
+  selectedEmotionList,
   onSelectedEmotionListChange,
 }) => {
   const [isSelected, setIsSelected] = useState(false);
-
+  useEffect(() => {
+    if (selectedEmotionList && selectedEmotionList.includes(emotionName)) {
+      setIsSelected(true);
+    }
+  }, [selectedEmotionList, emotionName]);
   const handleClick = () => {
     if (currentPage === "write") {
       if (isSelected) {

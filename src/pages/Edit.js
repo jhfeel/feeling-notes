@@ -3,16 +3,18 @@ import Header from "../components/Header";
 import MenuBar from "../components/MenuBar";
 import MobileBottomBar from "../components/MobileBottomBar";
 import SideBar from "../components/SideBar";
+import NoteForm from "../components/NoteForm";
 
-const Edit = () => {
+const Edit = ({ noteEntries, onEdit }) => {
   const { id } = useParams();
+  const noteItem = noteEntries.find((note) => note.id === Number(id));
 
   return (
     <div className="container">
       <MenuBar />
       <div className="main">
         <Header />
-        <div className="contents-container">{id}번 노트 수정 페이지</div>
+        <NoteForm noteItemToEdit={noteItem} onEdit={onEdit} />
         <MobileBottomBar />
       </div>
       <SideBar />
