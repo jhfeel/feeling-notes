@@ -6,14 +6,33 @@ import { useNavigate, useParams } from "react-router-dom";
 import { formatTimestamp } from "../utils/dateTime";
 import EmotionButton from "../components/EmotionButton";
 import ActionButton from "../components/ActionButton";
+import { useEffect, useState } from "react";
 
 const Detail = ({ noteEntries, onRemove }) => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const noteItem = noteEntries.find((item) => item.id === Number(id));
   const emotionList = [];
+  const [dateTime, setDateTime] = useState("");
+  const [situation, setSituation] = useState("");
+  const [selectedEmotionList, setSelectedEmotionList] = useState([]);
+  const [thoughts, setThoughts] = useState("");
+  const [memo, setMemo] = useState("");
 
-  noteItem.emotions.forEach((emotion, index) => {
+  useEffect(() => {
+    const noteItem = noteEntries.find((item) => item.id === Number(id));
+    if (noteItem) {
+      setDateTime(formatTimestamp(noteItem.timestamp));
+      setSituation(noteItem.situation);
+      setSelectedEmotionList(noteItem.emotions);
+      setThoughts(noteItem.thoughts);
+      setMemo(noteItem.memo);
+    } else {
+      alert("존재하지 않는 노트입니다.");
+      navigate("/", { replace: true });
+    }
+  }, [id, noteEntries, navigate]);
+
+  selectedEmotionList.forEach((emotion, index) => {
     emotionList.push(
       <EmotionButton key={index} emotionName={emotion} currentPage={"detail"} />
     );
@@ -27,7 +46,7 @@ const Detail = ({ noteEntries, onRemove }) => {
     if (window.confirm("정말로 삭제하시겠습니까?")) {
       onRemove(id);
 
-      navigate("/");
+      navigate("/", { replace: true });
     }
   };
 
@@ -38,15 +57,15 @@ const Detail = ({ noteEntries, onRemove }) => {
         <Header />
         <div className="contents-container">
           <h4>일시</h4>
-          <div>{formatTimestamp(noteItem.timestamp)}</div>
+          <div>{dateTime}</div>
           <h4>상황</h4>
-          <div>{noteItem.situation}</div>
+          <div>{situation}</div>
           <h4>감정</h4>
           <div className="emotionButtonList-container">{emotionList}</div>
           <h4>생각</h4>
-          <div>{noteItem.thoughts}</div>
+          <div>{thoughts}</div>
           <h4>메모</h4>
-          <div>{noteItem.memo}</div>
+          <div>{memo}</div>
           <ActionButton type={"edit"} onClick={handleEditButtonClick} />
           <ActionButton type={"remove"} onClick={handleRemoveButtonClick} />
         </div>
