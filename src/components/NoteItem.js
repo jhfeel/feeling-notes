@@ -8,12 +8,7 @@ const NoteItem = ({ id, timestamp, situation, emotions }) => {
   const emotionList = [];
   emotions.forEach((emotion, index) => {
     emotionList.push(
-      <EmotionButton
-        key={index}
-        emotionName={emotion}
-        isSelected={true}
-        currentPage={"home"}
-      />
+      <EmotionButton key={index} emotionName={emotion} currentPage={"home"} />
     );
   });
 

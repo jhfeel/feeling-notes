@@ -14,7 +14,7 @@ export const formatTimestamp = (timestamp) => {
 
 export const formatDateTime = (dateTime) => {
   let year = dateTime.getFullYear();
-  let month = ("0" + (dateTime.getMonth() + 1)).slice(-2); // getMonth()는 0부터 시작하므로 +1
+  let month = ("0" + (dateTime.getMonth() + 1)).slice(-2);
   let day = ("0" + dateTime.getDate()).slice(-2);
   let hours = ("0" + dateTime.getHours()).slice(-2);
   let minutes = ("0" + dateTime.getMinutes()).slice(-2);

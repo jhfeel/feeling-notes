@@ -107,11 +107,7 @@ const NoteForm = ({ onCreate, noteItemToEdit, onEdit }) => {
           name="dateTime"
           value={formatDateTime(dateTime)}
           onChange={(e) => {
-            console.log(e.target.value);
-            console.log(new Date(e.target.value));
-            console.log(formatDateTime(new Date(e.target.value)));
             setDateTime(new Date(e.target.value));
-            // return e.target.value;
           }}
         ></input>
       </div>
