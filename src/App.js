@@ -7,18 +7,11 @@ import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
-  const [noteEntries, setNoteEntries] = useState([]);
-  const [lastNoteId, setLastNoteId] = useState(-1);
-
-  useEffect(() => {
+  const [noteEntries, setNoteEntries] = useState(() => {
     const notesData = localStorage.getItem("Feeling Notes");
-
-    if (notesData === null) {
-      localStorage.setItem("Feeling Notes", JSON.stringify([]));
-    } else {
-      setNoteEntries(JSON.parse(notesData));
-    }
-  }, []);
+    return notesData ? JSON.parse(notesData) : [];
+  });
+  const [lastNoteId, setLastNoteId] = useState(-1);
 
   useEffect(() => {
     localStorage.setItem("Feeling Notes", JSON.stringify(noteEntries));
