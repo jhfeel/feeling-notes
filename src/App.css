@@ -18,6 +18,13 @@ body {
   border-right: 1px solid black;
 }
 
+.menu-item {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 5px;
+  text-align: center;
+}
+
 .SideBar {
   flex: 3;
   background-color: lightcyan;
@@ -44,6 +51,7 @@ body {
   height: 40px;
   background-color: lightcyan;
   border-bottom: 1px solid black;
+  align-items: center;
 }
 
 .header-left-icon {
@@ -51,6 +59,9 @@ body {
   height: 30px;
   width: 30px;
   background-size: cover;
+  @media (min-width: 480px) {
+    display: none;
+  }
 }
 
 .header-title {
@@ -62,6 +73,9 @@ body {
 .header-right-icon {
   height: 30px;
   width: 30px;
+  @media (min-width: 480px) {
+    display: none;
+  }
 }
 
 .MobileBottomBar {
