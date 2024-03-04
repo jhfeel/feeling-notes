@@ -58,7 +58,7 @@ const Detail = ({ noteEntries, onRemove }) => {
         <div className="contents-container">
           <section>
             <h4>일시</h4>
-            <div className="content-box">{dateTime}</div>
+            <div className="content-box date-time-box">{dateTime}</div>
           </section>
           <section>
             <h4>상황</h4>
