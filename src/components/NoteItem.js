@@ -19,9 +19,9 @@ const NoteItem = ({ id, timestamp, situation, emotions }) => {
         navigate(`/detail/${id}`);
       }}
     >
-      <div>{dateTime}</div>
-      <div>{situation}</div>
-      <div className="selected-emotions-list">{emotionList}</div>
+      <div className="NoteItem-dateTime">{dateTime}</div>
+      <div className="NoteItem-situation">{situation}</div>
+      <div className="NoteItem-emotions">{emotionList}</div>
     </div>
   );
 };

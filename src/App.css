@@ -148,10 +148,26 @@ body {
 /* NoteItem */
 .NoteItem {
   border-bottom: 1px solid black;
+  margin-bottom: 5px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 80px;
+  min-width: 300px;
 }
 
-.selected-emotions-list {
+.NoteItem-dateTime {
+  font-size: 12px;
+}
+
+.NoteItem-situation {
+  font-size: 15px;
+}
+
+.NoteItem-emotions {
   display: flex;
+  gap: 3px;
 }
 
 /* 작성 페이지 */
