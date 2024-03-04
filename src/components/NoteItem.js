@@ -14,7 +14,7 @@ const NoteItem = ({ id, timestamp, situation, emotions }) => {
 
   return (
     <div
-      className="NoteItem"
+      className="NoteItem clickable"
       onClick={() => {
         navigate(`/detail/${id}`);
       }}

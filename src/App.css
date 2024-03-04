@@ -88,6 +88,7 @@ textarea {
   background-color: lightcyan;
   border-bottom: 1px solid black;
   align-items: center;
+  cursor: default;
 }
 
 .header-left-icon {
@@ -190,7 +191,7 @@ textarea {
   flex-direction: column;
   gap: 10px;
   min-height: 80px;
-  min-width: 300px;
+  /* min-width: 300px; */
 }
 
 .NoteItem-dateTime {

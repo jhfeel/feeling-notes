@@ -21,7 +21,7 @@ const ActionButton = ({ type, onClick }) => {
 
   return (
     <button
-      className="ActionButton"
+      className="ActionButton clickable"
       onClick={onClick}
       style={{ backgroundColor: btnColor }}
     >
