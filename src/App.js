@@ -26,12 +26,9 @@ function App() {
 
   const onEdit = (targetNoteId, EditedNote) => {
     setNoteEntries(
-      noteEntries.map((entry) => {
-        return (entry =
-          entry.id === targetNoteId
-            ? { id: targetNoteId, ...EditedNote }
-            : entry);
-      })
+      noteEntries.map((entry) =>
+        entry.id === targetNoteId ? { id: targetNoteId, ...EditedNote } : entry
+      )
     );
   };
 
