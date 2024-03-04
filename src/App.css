@@ -24,7 +24,8 @@ textarea {
 }
 
 .contents-container {
-  padding: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .action-button-container {
@@ -116,7 +117,7 @@ textarea {
 }
 
 .MobileBottomBar {
-  position: fixed;
+  position: sticky;
   bottom: 0;
   left: 0;
   right: 0;
