@@ -188,8 +188,8 @@ textarea {
   padding: 5px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 80px;
+  gap: 10px;
+  min-height: 80px;
   min-width: 300px;
 }
 
