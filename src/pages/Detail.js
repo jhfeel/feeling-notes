@@ -56,18 +56,30 @@ const Detail = ({ noteEntries, onRemove }) => {
       <div className="main">
         <Header />
         <div className="contents-container">
-          <h4>일시</h4>
-          <div>{dateTime}</div>
-          <h4>상황</h4>
-          <div>{situation}</div>
-          <h4>감정</h4>
-          <div className="emotionButtonList-container">{emotionList}</div>
-          <h4>생각</h4>
-          <div>{thoughts}</div>
-          <h4>메모</h4>
-          <div>{memo}</div>
-          <ActionButton type={"edit"} onClick={handleEditButtonClick} />
-          <ActionButton type={"remove"} onClick={handleRemoveButtonClick} />
+          <section>
+            <h4>일시</h4>
+            <div className="content-box">{dateTime}</div>
+          </section>
+          <section>
+            <h4>상황</h4>
+            <div className="content-box">{situation}</div>
+          </section>
+          <section>
+            <h4>감정</h4>
+            <div className="emotion-button-list">{emotionList}</div>
+          </section>
+          <section>
+            <h4>생각</h4>
+            <div className="content-box">{thoughts}</div>
+          </section>
+          <section>
+            <h4>메모</h4>
+            <div className="content-box">{memo}</div>
+          </section>
+          <section className="action-button-container">
+            <ActionButton type={"edit"} onClick={handleEditButtonClick} />
+            <ActionButton type={"remove"} onClick={handleRemoveButtonClick} />
+          </section>
         </div>
         <MobileBottomBar />
       </div>

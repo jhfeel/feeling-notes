@@ -100,7 +100,7 @@ const NoteForm = ({ onCreate, noteItemToEdit, onEdit }) => {
 
   return (
     <div className="contents-container">
-      <div>
+      <section>
         <h4>언제인가요?</h4>
         <input
           type="datetime-local"
@@ -110,21 +110,22 @@ const NoteForm = ({ onCreate, noteItemToEdit, onEdit }) => {
             setDateTime(new Date(e.target.value));
           }}
         ></input>
-      </div>
-      <div>
+      </section>
+      <section>
         <h4>어떤 상황이었나요?</h4>
         <textarea
+          className="zz"
           value={situation}
           onChange={(e) => {
             setSituation(e.target.value);
           }}
         />
-      </div>
-      <div>
+      </section>
+      <section>
         <h4>그때, 어떤 감정을 느꼈나요?</h4>
-        <div className="emotionButtonList-container">{emotionButtonList}</div>
-      </div>
-      <div>
+        <div className="emotion-button-list">{emotionButtonList}</div>
+      </section>
+      <section>
         <h4>그 순간, 어떤 생각을 하고 있었나요?</h4>
         <textarea
           value={thoughts}
@@ -132,8 +133,8 @@ const NoteForm = ({ onCreate, noteItemToEdit, onEdit }) => {
             setThoughts(e.target.value);
           }}
         />
-      </div>
-      <div>
+      </section>
+      <section>
         <h4>메모하기</h4>
         <textarea
           value={memo}
@@ -141,9 +142,11 @@ const NoteForm = ({ onCreate, noteItemToEdit, onEdit }) => {
             setMemo(e.target.value);
           }}
         />
-      </div>
-      <ActionButton type={"cancel"} onClick={handleCancleButtonClick} />
-      <ActionButton type={"submit"} onClick={handleSubmitButtonClick} />
+      </section>
+      <section className="action-button-container">
+        <ActionButton type={"cancel"} onClick={handleCancleButtonClick} />
+        <ActionButton type={"submit"} onClick={handleSubmitButtonClick} />
+      </section>
     </div>
   );
 };

@@ -21,7 +21,7 @@ const NoteItem = ({ id, timestamp, situation, emotions }) => {
     >
       <div className="NoteItem-dateTime">{dateTime}</div>
       <div className="NoteItem-situation">{situation}</div>
-      <div className="NoteItem-emotions">{emotionList}</div>
+      <div className="emotion-button-list">{emotionList}</div>
     </div>
   );
 };
