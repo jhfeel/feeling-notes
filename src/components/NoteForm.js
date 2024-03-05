@@ -114,7 +114,6 @@ const NoteForm = ({ onCreate, noteItemToEdit, onEdit }) => {
       <section>
         <h4>어떤 상황이었나요?</h4>
         <textarea
-          className="zz"
           value={situation}
           onChange={(e) => {
             setSituation(e.target.value);

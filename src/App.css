@@ -76,6 +76,11 @@ textarea {
   }
 }
 
+.side-content {
+  text-align: center;
+  font-size: 13px;
+}
+
 .main {
   flex: 5;
   height: 100%;

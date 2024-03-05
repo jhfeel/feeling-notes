@@ -31,7 +31,7 @@ const Home = ({ noteEntries }) => {
         <div className="contents-container">{rows}</div>
         <MobileBottomBar />
       </div>
-      <SideBar />
+      <SideBar noteEntries={noteEntries} />
     </div>
   );
 };

@@ -4,7 +4,7 @@ import MobileBottomBar from "../components/MobileBottomBar";
 import SideBar from "../components/SideBar";
 import NoteForm from "../components/NoteForm";
 
-const Write = ({ onCreate }) => {
+const Write = ({ onCreate, noteEntries }) => {
   return (
     <div className="container">
       <MenuBar />
@@ -13,7 +13,7 @@ const Write = ({ onCreate }) => {
         <NoteForm onCreate={onCreate} />
         <MobileBottomBar />
       </div>
-      <SideBar />
+      <SideBar noteEntries={noteEntries} />
     </div>
   );
 };

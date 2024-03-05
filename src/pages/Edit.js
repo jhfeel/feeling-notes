@@ -17,7 +17,7 @@ const Edit = ({ noteEntries, onEdit }) => {
         <NoteForm noteItemToEdit={noteItem} onEdit={onEdit} />
         <MobileBottomBar />
       </div>
-      <SideBar />
+      <SideBar noteEntries={noteEntries} />
     </div>
   );
 };
