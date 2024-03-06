@@ -11,7 +11,11 @@ function App() {
     const notesData = localStorage.getItem("Feeling Notes");
     return notesData ? JSON.parse(notesData) : [];
   });
-  const [lastNoteId, setLastNoteId] = useState(-1);
+  const [lastNoteId, setLastNoteId] = useState(() => {
+    const lastIndex = noteEntries.length - 1;
+    const lastNote = noteEntries[lastIndex];
+    return lastNote ? lastNote.id : -1;
+  });
 
   useEffect(() => {
     localStorage.setItem("Feeling Notes", JSON.stringify(noteEntries));
