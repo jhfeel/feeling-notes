@@ -19,6 +19,11 @@ const Detail = ({ noteEntries, onRemove }) => {
   const [memo, setMemo] = useState("");
 
   useEffect(() => {
+    const titleElement = document.getElementsByTagName("title")[0];
+    titleElement.innerText = `${id}번 노트`;
+  }, [id]);
+
+  useEffect(() => {
     const noteItem = noteEntries.find((item) => item.id === Number(id));
     if (noteItem) {
       setDateTime(formatTimestamp(noteItem.timestamp));

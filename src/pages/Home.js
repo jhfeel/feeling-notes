@@ -3,6 +3,7 @@ import MenuBar from "../components/MenuBar";
 import MobileBottomBar from "../components/MobileBottomBar";
 import SideBar from "../components/SideBar";
 import NoteItem from "../components/NoteItem";
+import { useEffect } from "react";
 
 const Home = ({ noteEntries }) => {
   const noteList = noteEntries.slice();
@@ -22,6 +23,11 @@ const Home = ({ noteEntries }) => {
       />
     );
   });
+
+  useEffect(() => {
+    const titleElement = document.getElementsByTagName("title")[0];
+    titleElement.innerText = "Feeling Notes";
+  }, []);
 
   return (
     <div className="container">
