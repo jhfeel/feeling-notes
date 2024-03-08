@@ -51,7 +51,6 @@ const NoteForm = ({ onCreate, noteItemToEdit, onEdit }) => {
     "후회 😔",
   ];
   const emotionButtonList = [];
-  console.log(dateTime);
   emotionList.forEach((emotion, index) => {
     emotionButtonList.push(
       <EmotionButton
@@ -136,6 +135,7 @@ const NoteForm = ({ onCreate, noteItemToEdit, onEdit }) => {
           onChange={(e) => {
             setSituation(e.target.value);
           }}
+          autoFocus
         />
       </section>
       <section>
