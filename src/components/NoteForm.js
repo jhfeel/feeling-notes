@@ -51,7 +51,7 @@ const NoteForm = ({ onCreate, noteItemToEdit, onEdit }) => {
     "후회 😔",
   ];
   const emotionButtonList = [];
-
+  console.log(dateTime);
   emotionList.forEach((emotion, index) => {
     emotionButtonList.push(
       <EmotionButton
@@ -72,6 +72,15 @@ const NoteForm = ({ onCreate, noteItemToEdit, onEdit }) => {
 
   const handleSubmitButtonClick = () => {
     if (isEditMode) {
+      if (situation === "") {
+        alert("상황을 입력해 주세요.");
+        return;
+      }
+      if (selectedEmotionList.length === 0) {
+        alert("감정을 선택해 주세요.");
+        return;
+      }
+
       if (window.confirm("수정하시겠습니까?")) {
         onEdit(noteItemToEdit.id, {
           timestamp: dateTime.getTime(),
@@ -84,6 +93,15 @@ const NoteForm = ({ onCreate, noteItemToEdit, onEdit }) => {
         navigate("/");
       }
     } else {
+      if (situation === "") {
+        alert("상황을 입력해 주세요.");
+        return;
+      }
+      if (selectedEmotionList.length === 0) {
+        alert("감정을 선택해 주세요.");
+        return;
+      }
+
       if (window.confirm("새 노트를 만드시겠습니까?")) {
         onCreate({
           timestamp: dateTime.getTime(),
