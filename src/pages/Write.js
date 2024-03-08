@@ -8,7 +8,7 @@ import { useEffect } from "react";
 const Write = ({ onCreate, noteEntries }) => {
   useEffect(() => {
     const titleElement = document.getElementsByTagName("title")[0];
-    titleElement.innerText = "노트 작성";
+    titleElement.innerText = "Feeling Notes - 노트 작성";
   }, []);
 
   return (

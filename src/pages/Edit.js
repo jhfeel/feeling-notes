@@ -12,7 +12,7 @@ const Edit = ({ noteEntries, onEdit }) => {
 
   useEffect(() => {
     const titleElement = document.getElementsByTagName("title")[0];
-    titleElement.innerText = `${id}번 노트 수정`;
+    titleElement.innerText = `Feeling Notes - ${id}번 노트 수정`;
   }, [id]);
 
   return (
