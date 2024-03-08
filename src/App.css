@@ -98,7 +98,10 @@ textarea {
   background-color: lightcyan;
   border-bottom: 1px solid black;
   align-items: center;
-  cursor: default;
+  justify-content: space-between;
+  @media (min-width: 480px) {
+    justify-content: center;
+  }
 }
 
 .header-left-icon {
@@ -109,12 +112,6 @@ textarea {
   @media (min-width: 480px) {
     display: none;
   }
-}
-
-.header-title {
-  width: 100%;
-  display: flex;
-  justify-content: center;
 }
 
 .header-right-icon {
