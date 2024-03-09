@@ -135,6 +135,7 @@ const NoteForm = ({ onCreate, noteItemToEdit, onEdit }) => {
           onChange={(e) => {
             setSituation(e.target.value);
           }}
+          placeholder="무엇을, 누구와, 어디서 ..."
           autoFocus
         />
       </section>
@@ -149,6 +150,7 @@ const NoteForm = ({ onCreate, noteItemToEdit, onEdit }) => {
           onChange={(e) => {
             setThoughts(e.target.value);
           }}
+          placeholder="스쳐 지나가 버리는 생각을 잡아 보세요 :)"
         />
       </section>
       <section>
