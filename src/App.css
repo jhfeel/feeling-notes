@@ -192,13 +192,16 @@ textarea {
 /* NoteItem */
 .NoteItem {
   border-bottom: 1px solid black;
-  margin-bottom: 5px;
+  /* margin-bottom: 5px; */
   padding: 5px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   min-height: 80px;
   /* min-width: 300px; */
+}
+.NoteItem:hover {
+  background-color: #ececec;
 }
 
 .NoteItem-dateTime {
