@@ -89,7 +89,7 @@ const NoteForm = ({ onCreate, noteItemToEdit, onEdit }) => {
           memo,
         });
 
-        navigate("/");
+        navigate(`/detail/${noteItemToEdit.id}`, { replace: true });
       }
     } else {
       if (situation === "") {
@@ -110,7 +110,7 @@ const NoteForm = ({ onCreate, noteItemToEdit, onEdit }) => {
           memo,
         });
 
-        navigate("/");
+        navigate(`/detail/${noteItemToEdit.id}`, { replace: true });
       }
     }
   };
