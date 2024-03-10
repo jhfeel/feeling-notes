@@ -192,13 +192,11 @@ textarea {
 /* NoteItem */
 .NoteItem {
   border-bottom: 1px solid black;
-  /* margin-bottom: 5px; */
   padding: 5px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   min-height: 80px;
-  /* min-width: 300px; */
 }
 .NoteItem:hover {
   background-color: #ececec;
@@ -211,6 +209,7 @@ textarea {
 .NoteItem-situation {
   font-size: 15px;
   word-break: break-all;
+  white-space: pre-wrap;
 }
 
 /* 상세 페이지 */
@@ -220,6 +219,7 @@ textarea {
   border-radius: 2px;
   min-height: 20px;
   word-break: break-all;
+  white-space: pre-wrap;
 }
 
 .date-time-box {
