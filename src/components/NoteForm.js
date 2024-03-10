@@ -110,7 +110,7 @@ const NoteForm = ({ onCreate, noteItemToEdit, onEdit }) => {
           memo,
         });
 
-        navigate(`/detail/${noteItemToEdit.id}`, { replace: true });
+        navigate("/");
       }
     }
   };
