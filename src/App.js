@@ -62,7 +62,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home noteEntries={noteEntries} />} />
+        <Route path="/" element={<Home userNotes={userNotes} />} />
         <Route
           path="/write"
           element={<Write onCreate={onCreate} noteEntries={noteEntries} />}

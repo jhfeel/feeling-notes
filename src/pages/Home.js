@@ -5,8 +5,8 @@ import SideBar from "../components/SideBar";
 import NoteItem from "../components/NoteItem";
 import { useEffect } from "react";
 
-const Home = ({ noteEntries }) => {
-  const noteList = noteEntries.slice();
+const Home = ({ userNotes }) => {
+  const noteList = userNotes.slice();
   noteList.sort((a, b) => {
     return b.timestamp - a.timestamp;
   });
@@ -17,7 +17,7 @@ const Home = ({ noteEntries }) => {
       <NoteItem
         key={index}
         id={item.id}
-        timestamp={item.timestamp}
+        datetime={item.event_datetime}
         situation={item.situation}
         emotions={item.emotions}
       />
@@ -37,7 +37,7 @@ const Home = ({ noteEntries }) => {
         <div className="contents-container">{rows}</div>
         <MobileBottomBar />
       </div>
-      <SideBar noteEntries={noteEntries} />
+      <SideBar noteEntries={userNotes} />
     </div>
   );
 };

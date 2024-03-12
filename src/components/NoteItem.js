@@ -1,10 +1,10 @@
 import EmotionButton from "./EmotionButton";
 import { useNavigate } from "react-router-dom";
-import { formatTimestamp } from "../utils/dateTime";
+import { formatTimestamp, isoDateStringToLocalFormat } from "../utils/dateTime";
 
-const NoteItem = ({ id, timestamp, situation, emotions }) => {
+const NoteItem = ({ id, datetime, situation, emotions }) => {
   const navigate = useNavigate();
-  const dateTime = formatTimestamp(timestamp);
+  const formattedDatetime = isoDateStringToLocalFormat(datetime);
   const emotionList = [];
   emotions.forEach((emotion, index) => {
     emotionList.push(
@@ -19,7 +19,7 @@ const NoteItem = ({ id, timestamp, situation, emotions }) => {
         navigate(`/detail/${id}`);
       }}
     >
-      <div className="NoteItem-dateTime">{dateTime}</div>
+      <div className="NoteItem-dateTime">{formattedDatetime}</div>
       <div className="NoteItem-situation">{situation}</div>
       <div className="emotion-button-list">{emotionList}</div>
     </div>

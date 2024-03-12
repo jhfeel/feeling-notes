@@ -1,3 +1,17 @@
+export const isoDateStringToLocalFormat = (isoDateString) => {
+  const date = new Date(isoDateString);
+  const options = {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  };
+  const formatter = new Intl.DateTimeFormat("ko-KR", options);
+  return formatter.format(date);
+};
+
 export const formatTimestamp = (timestamp) => {
   const date = new Date(timestamp);
   const options = {
