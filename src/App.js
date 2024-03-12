@@ -5,6 +5,12 @@ import Edit from "./pages/Edit";
 import Detail from "./pages/Detail";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(
+  process.env.REACT_APP_SUPABASE_URL,
+  process.env.REACT_APP_SUPABASE_KEY
+);
 
 function App() {
   const [noteEntries, setNoteEntries] = useState(() => {
@@ -16,6 +22,17 @@ function App() {
     const lastNote = noteEntries[lastIndex];
     return lastNote ? lastNote.id : -1;
   });
+
+  const [userNotes, setUserNotes] = useState([]);
+
+  useEffect(() => {
+    getUserNotes();
+  }, []);
+
+  async function getUserNotes() {
+    const { data } = await supabase.from("notes").select();
+    setUserNotes(data);
+  }
 
   useEffect(() => {
     localStorage.setItem("Feeling Notes", JSON.stringify(noteEntries));
