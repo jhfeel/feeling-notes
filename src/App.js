@@ -73,7 +73,13 @@ function App() {
         />
         <Route
           path="/detail/:id"
-          element={<Detail noteEntries={noteEntries} onRemove={onRemove} />}
+          element={
+            <Detail
+              userNotes={userNotes}
+              noteEntries={noteEntries}
+              onRemove={onRemove}
+            />
+          }
         />
       </Routes>
     </BrowserRouter>

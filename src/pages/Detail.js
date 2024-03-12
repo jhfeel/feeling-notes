@@ -3,16 +3,16 @@ import MenuBar from "../components/MenuBar";
 import MobileBottomBar from "../components/MobileBottomBar";
 import SideBar from "../components/SideBar";
 import { useNavigate, useParams } from "react-router-dom";
-import { formatTimestamp } from "../utils/dateTime";
+import { formatTimestamp, isoDateStringToLocalFormat } from "../utils/dateTime";
 import EmotionButton from "../components/EmotionButton";
 import ActionButton from "../components/ActionButton";
 import { useEffect, useState } from "react";
 
-const Detail = ({ noteEntries, onRemove }) => {
+const Detail = ({ userNotes, noteEntries, onRemove }) => {
   const navigate = useNavigate();
   const { id } = useParams();
   const emotionList = [];
-  const [dateTime, setDateTime] = useState("");
+  const [datetime, setDatetime] = useState("");
   const [situation, setSituation] = useState("");
   const [selectedEmotionList, setSelectedEmotionList] = useState([]);
   const [thoughts, setThoughts] = useState("");
@@ -24,9 +24,9 @@ const Detail = ({ noteEntries, onRemove }) => {
   }, [id]);
 
   useEffect(() => {
-    const noteItem = noteEntries.find((item) => item.id === Number(id));
+    const noteItem = userNotes.find((item) => item.id === Number(id));
     if (noteItem) {
-      setDateTime(formatTimestamp(noteItem.timestamp));
+      setDatetime(isoDateStringToLocalFormat(noteItem.event_datetime));
       setSituation(noteItem.situation);
       setSelectedEmotionList(noteItem.emotions);
       setThoughts(noteItem.thoughts);
@@ -35,7 +35,7 @@ const Detail = ({ noteEntries, onRemove }) => {
       alert("존재하지 않는 노트입니다.");
       navigate("/", { replace: true });
     }
-  }, [id, noteEntries, navigate]);
+  }, [id, userNotes, navigate]);
 
   selectedEmotionList.forEach((emotion, index) => {
     emotionList.push(
@@ -63,7 +63,7 @@ const Detail = ({ noteEntries, onRemove }) => {
         <div className="contents-container">
           <section>
             <h4>일시</h4>
-            <div className="content-box date-time-box">{dateTime}</div>
+            <div className="content-box date-time-box">{datetime}</div>
           </section>
           <section>
             <h4>상황</h4>
