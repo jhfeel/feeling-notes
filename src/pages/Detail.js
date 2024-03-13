@@ -88,7 +88,7 @@ const Detail = ({ userNotes, noteEntries, onRemove }) => {
         </div>
         <MobileBottomBar />
       </div>
-      <SideBar noteEntries={noteEntries} />
+      <SideBar userNotes={userNotes} />
     </div>
   );
 };
