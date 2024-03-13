@@ -8,7 +8,7 @@ import { useEffect } from "react";
 const Home = ({ userNotes }) => {
   const noteList = userNotes.slice();
   noteList.sort((a, b) => {
-    return b.timestamp - a.timestamp;
+    return b.event_datetime.localeCompare(a.event_datetime);
   });
   const rows = [];
 

@@ -3,7 +3,7 @@ import MenuBar from "../components/MenuBar";
 import MobileBottomBar from "../components/MobileBottomBar";
 import SideBar from "../components/SideBar";
 import { useNavigate, useParams } from "react-router-dom";
-import { formatTimestamp, isoDateStringToLocalFormat } from "../utils/dateTime";
+import { isoDateStringToLocalFormat } from "../utils/dateTime";
 import EmotionButton from "../components/EmotionButton";
 import ActionButton from "../components/ActionButton";
 import { useEffect, useState } from "react";

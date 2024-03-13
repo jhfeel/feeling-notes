@@ -6,9 +6,9 @@ import SideBar from "../components/SideBar";
 import NoteForm from "../components/NoteForm";
 import { useEffect } from "react";
 
-const Edit = ({ noteEntries, onEdit }) => {
+const Edit = ({ userNotes, onEdit }) => {
   const { id } = useParams();
-  const noteItem = noteEntries.find((note) => note.id === Number(id));
+  const noteItem = userNotes.find((note) => note.id === Number(id));
 
   useEffect(() => {
     const titleElement = document.getElementsByTagName("title")[0];
@@ -23,7 +23,7 @@ const Edit = ({ noteEntries, onEdit }) => {
         <NoteForm noteItemToEdit={noteItem} onEdit={onEdit} />
         <MobileBottomBar />
       </div>
-      <SideBar noteEntries={noteEntries} />
+      <SideBar userNotes={userNotes} />
     </div>
   );
 };

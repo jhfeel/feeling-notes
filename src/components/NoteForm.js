@@ -6,8 +6,11 @@ import { useNavigate } from "react-router-dom";
 
 const NoteForm = ({ onCreate, noteItemToEdit, onEdit }) => {
   const isEditMode = noteItemToEdit != null;
+  // const [dateTime, setDateTime] = useState(
+  //   isEditMode ? new Date(noteItemToEdit.timestamp) : new Date()
+  // );
   const [dateTime, setDateTime] = useState(
-    isEditMode ? new Date(noteItemToEdit.timestamp) : new Date()
+    isEditMode ? new Date(noteItemToEdit.event_datetime) : new Date()
   );
   const [situation, setSituation] = useState(
     isEditMode ? noteItemToEdit.situation : ""
@@ -82,7 +85,8 @@ const NoteForm = ({ onCreate, noteItemToEdit, onEdit }) => {
 
       if (window.confirm("수정하시겠습니까?")) {
         onEdit(noteItemToEdit.id, {
-          timestamp: dateTime.getTime(),
+          // timestamp:dateTime.getTime(),
+          event_datetime: dateTime.toISOString(),
           situation,
           emotions: selectedEmotionList,
           thoughts,
@@ -103,7 +107,8 @@ const NoteForm = ({ onCreate, noteItemToEdit, onEdit }) => {
 
       if (window.confirm("새 노트를 만드시겠습니까?")) {
         onCreate({
-          timestamp: dateTime.getTime(),
+          // timestamp: dateTime.getTime(),
+          event_datetime: dateTime.toISOString(),
           situation,
           emotions: selectedEmotionList,
           thoughts,

@@ -13,50 +13,64 @@ const supabase = createClient(
 );
 
 function App() {
-  const [noteEntries, setNoteEntries] = useState(() => {
-    const notesData = localStorage.getItem("Feeling Notes");
-    return notesData ? JSON.parse(notesData) : [];
-  });
-  const [lastNoteId, setLastNoteId] = useState(() => {
-    const lastIndex = noteEntries.length - 1;
-    const lastNote = noteEntries[lastIndex];
-    return lastNote ? lastNote.id : -1;
-  });
-
   const [userNotes, setUserNotes] = useState([]);
+
+  const getUserNotes = async () => {
+    const { data } = await supabase.from("notes").select();
+    setUserNotes(data);
+  };
 
   useEffect(() => {
     getUserNotes();
   }, []);
 
-  async function getUserNotes() {
-    const { data } = await supabase.from("notes").select();
-    setUserNotes(data);
-  }
-
-  useEffect(() => {
-    localStorage.setItem("Feeling Notes", JSON.stringify(noteEntries));
-  }, [noteEntries]);
-
-  const onCreate = (newNote) => {
-    const newEntry = { id: lastNoteId + 1, ...newNote };
-
-    setNoteEntries([...noteEntries, newEntry]);
-    setLastNoteId(lastNoteId + 1);
+  const onCreate = async (newNote) => {
+    const { data, error } = await supabase
+      .from("notes")
+      .insert({ ...newNote })
+      .select();
+    if (error) {
+      console.log("삽입 에러", error);
+    } else {
+      console.log("삽입 성공", data);
+      setUserNotes([...userNotes, ...data]);
+    }
   };
 
-  const onEdit = (targetNoteId, EditedNote) => {
-    setNoteEntries(
-      noteEntries.map((entry) =>
-        entry.id === targetNoteId ? { id: targetNoteId, ...EditedNote } : entry
-      )
-    );
+  const onEdit = async (targetNoteId, EditedNote) => {
+    const { data, error } = await supabase
+      .from("notes")
+      .update({ ...EditedNote })
+      .eq("id", targetNoteId)
+      .select();
+
+    if (error) {
+      console.log("수정 에러", error);
+    } else {
+      console.log("수정 성공", data);
+      setUserNotes(
+        userNotes.map((note) =>
+          note.id === targetNoteId ? { id: targetNoteId, ...EditedNote } : note
+        )
+      );
+    }
   };
 
-  const onRemove = (targetNoteId) => {
-    setNoteEntries(
-      noteEntries.filter((note) => note.id !== Number(targetNoteId))
-    );
+  const onRemove = async (targetNoteId) => {
+    const { error } = await supabase
+      .from("notes")
+      .delete()
+      .eq("id", targetNoteId);
+
+    if (error) {
+      console.log("삭제 에러", error);
+    } else {
+      console.log("삭제 성공");
+      setUserNotes(
+        userNotes.filter((note) => note.id !== Number(targetNoteId))
+      );
+      console.log(userNotes);
+    }
   };
 
   return (
@@ -65,21 +79,15 @@ function App() {
         <Route path="/" element={<Home userNotes={userNotes} />} />
         <Route
           path="/write"
-          element={<Write onCreate={onCreate} noteEntries={noteEntries} />}
+          element={<Write onCreate={onCreate} userNotes={userNotes} />}
         />
         <Route
           path="/edit/:id"
-          element={<Edit noteEntries={noteEntries} onEdit={onEdit} />}
+          element={<Edit userNotes={userNotes} onEdit={onEdit} />}
         />
         <Route
           path="/detail/:id"
-          element={
-            <Detail
-              userNotes={userNotes}
-              noteEntries={noteEntries}
-              onRemove={onRemove}
-            />
-          }
+          element={<Detail userNotes={userNotes} onRemove={onRemove} />}
         />
       </Routes>
     </BrowserRouter>

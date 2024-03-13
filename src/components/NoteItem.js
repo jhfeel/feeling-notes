@@ -1,6 +1,6 @@
 import EmotionButton from "./EmotionButton";
 import { useNavigate } from "react-router-dom";
-import { formatTimestamp, isoDateStringToLocalFormat } from "../utils/dateTime";
+import { isoDateStringToLocalFormat } from "../utils/dateTime";
 
 const NoteItem = ({ id, datetime, situation, emotions }) => {
   const navigate = useNavigate();

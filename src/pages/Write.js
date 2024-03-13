@@ -5,7 +5,7 @@ import SideBar from "../components/SideBar";
 import NoteForm from "../components/NoteForm";
 import { useEffect } from "react";
 
-const Write = ({ onCreate, noteEntries }) => {
+const Write = ({ onCreate, userNotes }) => {
   useEffect(() => {
     const titleElement = document.getElementsByTagName("title")[0];
     titleElement.innerText = "Feeling Notes - 노트 작성";
@@ -19,7 +19,7 @@ const Write = ({ onCreate, noteEntries }) => {
         <NoteForm onCreate={onCreate} />
         <MobileBottomBar />
       </div>
-      <SideBar noteEntries={noteEntries} />
+      <SideBar userNotes={userNotes} />
     </div>
   );
 };
