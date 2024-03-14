@@ -20,7 +20,7 @@ const Detail = ({ userNotes, noteEntries, onRemove }) => {
 
   useEffect(() => {
     const titleElement = document.getElementsByTagName("title")[0];
-    titleElement.innerText = `Feeling Notes - ${id}번 노트`;
+    titleElement.innerText = "Feeling Notes - 노트 상세";
   }, [id]);
 
   useEffect(() => {
