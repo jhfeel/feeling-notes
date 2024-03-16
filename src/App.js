@@ -10,7 +10,7 @@ function App() {
   const [userNotes, setUserNotes] = useState([]);
 
   useEffect(() => {
-    fetch(process.env.REACT_APP_API_URL + "/get")
+    fetch(process.env.REACT_APP_API_URL + "/getUserNotes")
       .then((response) => response.json())
       .then((result) => {
         setUserNotes(result);
@@ -18,7 +18,7 @@ function App() {
   }, []);
 
   const onCreate = async (newNote) => {
-    fetch("/api/post", {
+    fetch(process.env.REACT_APP_API_URL + "/createNote", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -29,22 +29,22 @@ function App() {
       .then((result) => setUserNotes([...userNotes, ...result]));
   };
 
-  const onEdit = async (targetNoteId, EditedNote) => {
-    // const { data, error } = await supabase
-    //   .from("notes")
-    //   .update({ ...EditedNote })
-    //   .eq("id", targetNoteId)
-    //   .select();
-    // if (error) {
-    //   console.log("수정 에러", error);
-    // } else {
-    //   console.log("수정 성공", data);
-    //   setUserNotes(
-    //     userNotes.map((note) =>
-    //       note.id === targetNoteId ? { id: targetNoteId, ...EditedNote } : note
-    //     )
-    //   );
-    // }
+  const onEdit = async (targetNoteId, editedNote) => {
+    setUserNotes(
+      userNotes.map((note) =>
+        note.id === targetNoteId ? { id: targetNoteId, ...editedNote } : note
+      )
+    );
+
+    fetch(process.env.REACT_APP_API_URL + "/editNote", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ targetNoteId, editedNote }),
+    }).catch((error) => {
+      console.error("수정 중 오류 발생:", error);
+    });
   };
 
   const onRemove = async (targetNoteId) => {
