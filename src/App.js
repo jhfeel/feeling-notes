@@ -8,6 +8,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   const [userNotes, setUserNotes] = useState([]);
+
   useEffect(() => {
     fetch(process.env.REACT_APP_API_URL + "/get")
       .then((response) => response.json())
@@ -17,25 +18,15 @@ function App() {
   }, []);
 
   const onCreate = async (newNote) => {
-    // const { data, error } = await supabase
-    //   .from("notes")
-    //   .insert({ ...newNote })
-    //   .select();
-    // if (error) {
-    //   console.log("삽입 에러", error);
-    // } else {
-    //   console.log("삽입 성공", data);
-    //   setUserNotes([...userNotes, ...data]);
-    // }
-    //   fetch("/api/post", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(newNote),
-    //   })
-    //     .then((response) => response.json())
-    //     .then((result) => setUserNotes([...userNotes, ...result]));
+    fetch("/api/post", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newNote),
+    })
+      .then((response) => response.json())
+      .then((result) => setUserNotes([...userNotes, ...result]));
   };
 
   const onEdit = async (targetNoteId, EditedNote) => {
