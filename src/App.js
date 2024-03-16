@@ -48,19 +48,28 @@ function App() {
   };
 
   const onRemove = async (targetNoteId) => {
-    // const { error } = await supabase
-    //   .from("notes")
-    //   .delete()
-    //   .eq("id", targetNoteId);
-    // if (error) {
-    //   console.log("삭제 에러", error);
-    // } else {
-    //   console.log("삭제 성공");
-    //   setUserNotes(
-    //     userNotes.filter((note) => note.id !== Number(targetNoteId))
-    //   );
-    //   console.log(userNotes);
-    // }
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/removeNote`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id: targetNoteId }),
+        }
+      );
+
+      if (response.ok) {
+        setUserNotes(
+          userNotes.filter((note) => note.id !== Number(targetNoteId))
+        );
+      } else {
+        console.error("서버에서 오류 응답을 받았습니다.");
+      }
+    } catch (error) {
+      console.error("삭제 중 오류 발생:", error);
+    }
   };
 
   return (
