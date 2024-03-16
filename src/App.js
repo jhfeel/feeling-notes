@@ -8,9 +8,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   const [userNotes, setUserNotes] = useState([]);
-
   useEffect(() => {
-    fetch("/api/get")
+    fetch(process.env.REACT_APP_API_URL + "/get")
       .then((response) => response.json())
       .then((result) => {
         setUserNotes(result);
@@ -28,6 +27,15 @@ function App() {
     //   console.log("삽입 성공", data);
     //   setUserNotes([...userNotes, ...data]);
     // }
+    //   fetch("/api/post", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(newNote),
+    //   })
+    //     .then((response) => response.json())
+    //     .then((result) => setUserNotes([...userNotes, ...result]));
   };
 
   const onEdit = async (targetNoteId, EditedNote) => {
