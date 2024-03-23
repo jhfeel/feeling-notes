@@ -5,6 +5,12 @@ import Edit from "./pages/Edit";
 import Detail from "./pages/Detail";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Login from "./pages/Login";
+import { createClient } from "@supabase/supabase-js";
+
+const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
+const supabaseKey = process.env.REACT_APP_SUPABASE_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 function App() {
   const [userNotes, setUserNotes] = useState([]);
@@ -35,7 +41,6 @@ function App() {
         note.id === targetNoteId ? { id: targetNoteId, ...editedNote } : note
       )
     );
-
     fetch(process.env.REACT_APP_API_URL + "/editNote", {
       method: "POST",
       headers: {
@@ -59,7 +64,6 @@ function App() {
           body: JSON.stringify({ id: targetNoteId }),
         }
       );
-
       if (response.ok) {
         setUserNotes(
           userNotes.filter((note) => note.id !== Number(targetNoteId))
@@ -75,7 +79,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home userNotes={userNotes} />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/home" element={<Home userNotes={userNotes} />} />
         <Route
           path="/write"
           element={<Write onCreate={onCreate} userNotes={userNotes} />}

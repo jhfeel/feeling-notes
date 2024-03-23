@@ -8,7 +8,7 @@ import EmotionButton from "../components/EmotionButton";
 import ActionButton from "../components/ActionButton";
 import { useEffect, useState } from "react";
 
-const Detail = ({ userNotes, noteEntries, onRemove }) => {
+const Detail = ({ userNotes, onRemove }) => {
   const navigate = useNavigate();
   const { id } = useParams();
   const emotionList = [];
