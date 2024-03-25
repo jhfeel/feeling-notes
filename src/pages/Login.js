@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { UserContext } from "../contexts/UserContext";
+import UserContext from "../contexts/UserContext";
 
 export const Login = () => {
   const { user, signInWithGoogle, signOut, checkLogin } =
