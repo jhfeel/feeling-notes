@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import { createClient } from "@supabase/supabase-js";
+import UserProvider from "./contexts/UserProvider";
 
 const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
 const supabaseKey = process.env.REACT_APP_SUPABASE_KEY;
@@ -77,24 +78,26 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/home" element={<Home userNotes={userNotes} />} />
-        <Route
-          path="/write"
-          element={<Write onCreate={onCreate} userNotes={userNotes} />}
-        />
-        <Route
-          path="/edit/:id"
-          element={<Edit userNotes={userNotes} onEdit={onEdit} />}
-        />
-        <Route
-          path="/detail/:id"
-          element={<Detail userNotes={userNotes} onRemove={onRemove} />}
-        />
-      </Routes>
-    </BrowserRouter>
+    <UserProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/home" element={<Home userNotes={userNotes} />} />
+          <Route
+            path="/write"
+            element={<Write onCreate={onCreate} userNotes={userNotes} />}
+          />
+          <Route
+            path="/edit/:id"
+            element={<Edit userNotes={userNotes} onEdit={onEdit} />}
+          />
+          <Route
+            path="/detail/:id"
+            element={<Detail userNotes={userNotes} onRemove={onRemove} />}
+          />
+        </Routes>
+      </BrowserRouter>
+    </UserProvider>
   );
 }
 
