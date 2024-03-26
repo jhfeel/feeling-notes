@@ -1,24 +1,27 @@
-import { useState } from "react";
 import { createClient } from "@supabase/supabase-js";
-import UserContext from "./UserContext";
+import { useEffect, useState } from "react";
+import SessionContext from "./SessionContext";
 
 const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
 const supabaseKey = process.env.REACT_APP_SUPABASE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+const SessionProvider = ({ children }) => {
+  const [session, setSession] = useState(null);
 
-  const checkLogin = async () => {
-    const { data, error } = await supabase.auth.getSession();
-    if (error) console.error("세션 확인 중 에러: ", error.message);
+  useEffect(() => {
+    const subscription = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === "SIGNED_OUT") {
+        setSession(null);
+      } else if (session) {
+        setSession(session);
+      }
+    });
 
-    if (data.session === null) {
-      setUser(null);
-    } else {
-      setUser(data.session.user);
-    }
-  };
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, []);
 
   const signInWithGoogle = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
@@ -31,17 +34,13 @@ const UserProvider = ({ children }) => {
   const signOut = async () => {
     const { error } = await supabase.auth.signOut();
     if (error) console.error("로그아웃 에러: ", error.message);
-
-    checkLogin();
   };
 
   return (
-    <UserContext.Provider
-      value={{ user, setUser, checkLogin, signInWithGoogle, signOut }}
-    >
+    <SessionContext.Provider value={{ session, signInWithGoogle, signOut }}>
       {children}
-    </UserContext.Provider>
+    </SessionContext.Provider>
   );
 };
 
-export default UserProvider;
+export default SessionProvider;

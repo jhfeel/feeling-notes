@@ -3,12 +3,11 @@ import Home from "./pages/Home";
 import Write from "./pages/Write";
 import Edit from "./pages/Edit";
 import Detail from "./pages/Detail";
+import Login from "./pages/Login";
 import { useContext, useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Login from "./pages/Login";
 import { createClient } from "@supabase/supabase-js";
-import UserProvider from "./contexts/UserProvider";
-import UserContext from "./contexts/UserContext";
+import SessionContext from "./contexts/SessionContext";
 
 const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
 const supabaseKey = process.env.REACT_APP_SUPABASE_KEY;
@@ -16,6 +15,11 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 function App() {
   const [userNotes, setUserNotes] = useState([]);
+  const { session } = useContext(SessionContext);
+
+  useEffect(() => {
+    console.log("Session", session);
+  }, [session]);
 
   const getUserNotes = async () => {
     const { data, error } = await supabase.from("notes").select("*");
@@ -73,26 +77,24 @@ function App() {
   }, []);
 
   return (
-    <UserProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Home userNotes={userNotes} />} />
-          <Route
-            path="/write"
-            element={<Write onCreate={onCreate} userNotes={userNotes} />}
-          />
-          <Route
-            path="/edit/:id"
-            element={<Edit userNotes={userNotes} onEdit={onEdit} />}
-          />
-          <Route
-            path="/detail/:id"
-            element={<Detail userNotes={userNotes} onRemove={onRemove} />}
-          />
-        </Routes>
-      </BrowserRouter>
-    </UserProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Home userNotes={userNotes} />} />
+        <Route
+          path="/write"
+          element={<Write onCreate={onCreate} userNotes={userNotes} />}
+        />
+        <Route
+          path="/edit/:id"
+          element={<Edit userNotes={userNotes} onEdit={onEdit} />}
+        />
+        <Route
+          path="/detail/:id"
+          element={<Detail userNotes={userNotes} onRemove={onRemove} />}
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

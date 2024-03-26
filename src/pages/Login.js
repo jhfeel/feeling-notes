@@ -1,17 +1,12 @@
-import { useContext, useEffect } from "react";
-import UserContext from "../contexts/UserContext";
+import { useContext } from "react";
+import SessionContext from "../contexts/SessionContext";
 
 export const Login = () => {
-  const { user, signInWithGoogle, signOut, checkLogin } =
-    useContext(UserContext);
-
-  useEffect(() => {
-    checkLogin();
-  }, [checkLogin]);
+  const { session, signInWithGoogle, signOut } = useContext(SessionContext);
 
   return (
     <div>
-      {user ? (
+      {session ? (
         <button onClick={signOut}>로그아웃</button>
       ) : (
         <button onClick={signInWithGoogle}>로그인</button>
