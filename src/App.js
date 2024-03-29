@@ -5,7 +5,7 @@ import Edit from "./pages/Edit";
 import Detail from "./pages/Detail";
 import Login from "./pages/Login";
 import { useContext, useEffect, useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js";
 import SessionContext from "./contexts/SessionContext";
 
@@ -16,10 +16,6 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 function App() {
   const [userNotes, setUserNotes] = useState([]);
   const { session } = useContext(SessionContext);
-
-  useEffect(() => {
-    console.log("Session", session);
-  }, [session]);
 
   const getUserNotes = async () => {
     const { data, error } = await supabase.from("notes").select("*");
@@ -77,24 +73,45 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Home userNotes={userNotes} />} />
-        <Route
-          path="/write"
-          element={<Write onCreate={onCreate} userNotes={userNotes} />}
-        />
-        <Route
-          path="/edit/:id"
-          element={<Edit userNotes={userNotes} onEdit={onEdit} />}
-        />
-        <Route
-          path="/detail/:id"
-          element={<Detail userNotes={userNotes} onRemove={onRemove} />}
-        />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route
+        path="/"
+        element={
+          session ? <Home userNotes={userNotes} /> : <Navigate to="/login" />
+        }
+      />
+      <Route
+        path="/write"
+        element={
+          session ? (
+            <Write onCreate={onCreate} userNotes={userNotes} />
+          ) : (
+            <Navigate to="/login" />
+          )
+        }
+      />
+      <Route
+        path="/edit/:id"
+        element={
+          session ? (
+            <Edit userNotes={userNotes} onEdit={onEdit} />
+          ) : (
+            <Navigate to="/login" />
+          )
+        }
+      />
+      <Route
+        path="/detail/:id"
+        element={
+          session ? (
+            <Detail userNotes={userNotes} onRemove={onRemove} />
+          ) : (
+            <Navigate to="/login" />
+          )
+        }
+      />
+    </Routes>
   );
 }
 

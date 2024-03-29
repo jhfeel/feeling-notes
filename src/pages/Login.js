@@ -1,13 +1,14 @@
 import { useContext } from "react";
 import SessionContext from "../contexts/SessionContext";
+import { Navigate } from "react-router-dom";
 
 export const Login = () => {
-  const { session, signInWithGoogle, signOut } = useContext(SessionContext);
+  const { session, signInWithGoogle } = useContext(SessionContext);
 
   return (
     <div>
       {session ? (
-        <button onClick={signOut}>로그아웃</button>
+        <Navigate to="/" />
       ) : (
         <button onClick={signInWithGoogle}>로그인</button>
       )}

@@ -10,22 +10,26 @@ const SessionProvider = ({ children }) => {
   const [session, setSession] = useState(null);
 
   useEffect(() => {
-    const subscription = supabase.auth.onAuthStateChange((event, session) => {
-      if (event === "SIGNED_OUT") {
-        setSession(null);
-      } else if (session) {
-        setSession(session);
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        console.log(event, session);
+        if (event === "SIGNED_OUT") {
+          setSession(null);
+        } else if (session) {
+          setSession(session);
+        }
       }
-    });
+    );
 
-    return () => {
-      subscription.unsubscribe();
-    };
+    return () => authListener.unsubscribe();
   }, []);
 
   const signInWithGoogle = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
+      options: {
+        redirectTo: process.env.REACT_APP_URL + "/login",
+      },
     });
 
     if (error) console.error("로그인 에러: ", error.message);
@@ -33,6 +37,7 @@ const SessionProvider = ({ children }) => {
 
   const signOut = async () => {
     const { error } = await supabase.auth.signOut();
+
     if (error) console.error("로그아웃 에러: ", error.message);
   };
 
