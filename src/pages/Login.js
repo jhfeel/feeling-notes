@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import SessionContext from "../contexts/SessionContext";
 import { Navigate } from "react-router-dom";
 import MenuBar from "../components/MenuBar";
@@ -8,6 +8,11 @@ import SideBar from "../components/SideBar";
 
 export const Login = ({ userNotes }) => {
   const { session, signInWithGoogle } = useContext(SessionContext);
+
+  useEffect(() => {
+    const titleElement = document.getElementsByTagName("title")[0];
+    titleElement.innerText = "Feeling Notes - 로그인";
+  }, []);
 
   return session ? (
     <Navigate to="/" />

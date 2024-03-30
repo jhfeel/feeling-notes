@@ -1,6 +1,5 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import SessionContext from "../contexts/SessionContext";
-import { Navigate } from "react-router-dom";
 import MenuBar from "../components/MenuBar";
 import Header from "../components/Header";
 import MobileBottomBar from "../components/MobileBottomBar";
@@ -8,6 +7,11 @@ import SideBar from "../components/SideBar";
 
 const Profile = ({ userNotes }) => {
   const { session, signOut } = useContext(SessionContext);
+
+  useEffect(() => {
+    const titleElement = document.getElementsByTagName("title")[0];
+    titleElement.innerText = "Feeling Notes - 내 프로필";
+  }, []);
 
   return (
     <div className="container">
