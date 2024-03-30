@@ -3,11 +3,9 @@ import MenuBar from "../components/MenuBar";
 import MobileBottomBar from "../components/MobileBottomBar";
 import SideBar from "../components/SideBar";
 import NoteItem from "../components/NoteItem";
-import { useContext, useEffect } from "react";
-import SessionContext from "../contexts/SessionContext";
+import { useEffect } from "react";
 
 const Home = ({ userNotes }) => {
-  const { signOut } = useContext(SessionContext);
   const noteList = userNotes.slice();
   noteList.sort((a, b) => {
     return b.event_datetime.localeCompare(a.event_datetime);
@@ -36,7 +34,6 @@ const Home = ({ userNotes }) => {
       <MenuBar />
       <div className="main">
         <Header />
-        <button onClick={signOut}>로그아웃</button>
         <div className="contents-container">{rows}</div>
         <MobileBottomBar />
       </div>

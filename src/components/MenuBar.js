@@ -11,16 +11,23 @@ const MenuBar = () => {
         }}
         className="clickable menu-item"
       >
-        {"홈"}
+        홈
       </div>
-      <div className="clickable menu-item">{"프로필"}</div>
+      <div
+        onClick={() => {
+          navigate("/profile");
+        }}
+        className="clickable menu-item"
+      >
+        프로필
+      </div>
       <div
         onClick={() => {
           navigate("/write");
         }}
         className="clickable menu-item"
       >
-        {"작성하기"}
+        작성하기
       </div>
     </div>
   );

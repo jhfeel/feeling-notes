@@ -8,6 +8,7 @@ import { useContext, useEffect, useState } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js";
 import SessionContext from "./contexts/SessionContext";
+import Profile from "./pages/Profile";
 
 const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
 const supabaseKey = process.env.REACT_APP_SUPABASE_KEY;
@@ -79,6 +80,12 @@ function App() {
         path="/"
         element={
           session ? <Home userNotes={userNotes} /> : <Navigate to="/login" />
+        }
+      />
+      <Route
+        path="/profile"
+        element={
+          session ? <Profile userNotes={userNotes} /> : <Navigate to="/login" />
         }
       />
       <Route

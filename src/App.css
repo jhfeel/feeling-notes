@@ -1,4 +1,9 @@
 /* 공통 */
+html,
+body,
+#root {
+  height: 100%;
+}
 
 body {
   margin: 0;
@@ -232,10 +237,10 @@ textarea {
 .login-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   gap: 30px;
-  margin-top: 35%;
+  height: 100%;
+  padding-top: 50px;
 }
 
 .google-login {
@@ -254,4 +259,13 @@ textarea {
 
 .google-logo {
   width: 15px;
+}
+
+/* 프로필 */
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding-top: 50px;
 }

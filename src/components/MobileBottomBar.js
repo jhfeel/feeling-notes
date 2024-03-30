@@ -21,7 +21,12 @@ const MobileBottomBar = () => {
       >
         <div className="home-icon"></div>
       </div>
-      <div className="bottom-item clickable">
+      <div
+        className="bottom-item clickable"
+        onClick={() => {
+          navigate("/profile");
+        }}
+      >
         <div className="profile-icon"></div>
       </div>
     </div>
