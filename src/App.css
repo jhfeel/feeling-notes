@@ -1,4 +1,5 @@
 /* 공통 */
+
 body {
   margin: 0;
 }
@@ -21,6 +22,12 @@ textarea {
 .container {
   display: flex;
   width: 100%;
+  height: 100%;
+}
+
+.main {
+  flex: 5;
+  height: 100%;
 }
 
 .contents-container {
@@ -83,11 +90,6 @@ textarea {
 .side-content {
   text-align: center;
   font-size: 13px;
-}
-
-.main {
-  flex: 5;
-  height: 100%;
 }
 
 .Header {
@@ -224,4 +226,32 @@ textarea {
 
 .date-time-box {
   width: fit-content;
+}
+
+/* 로그인 페이지 */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin-top: 35%;
+}
+
+.google-login {
+  height: 30px;
+  width: 85%;
+  max-width: 300px;
+  background-color: white;
+  border: 0.5px solid black;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 1px #999;
+}
+
+.google-logo {
+  width: 15px;
 }
