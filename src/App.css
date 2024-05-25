@@ -243,18 +243,40 @@ textarea {
   padding-top: 50px;
 }
 
-.google-login {
+.email-login-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.login-input {
+  height: 20px;
+  width: 80%;
+  max-width: 300px;
+  display: block;
+}
+
+.login-btn {
   height: 30px;
   width: 85%;
   max-width: 300px;
   background-color: white;
   border: 0.5px solid black;
   border-radius: 2px;
+  box-shadow: 0 1px #999;
+}
+
+.login-additional-link {
+  font-size: 10px;
+}
+
+.google-login-btn {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 5px;
-  box-shadow: 0 1px #999;
 }
 
 .google-logo {

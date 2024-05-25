@@ -24,6 +24,24 @@ const SessionProvider = ({ children }) => {
     return () => authListener.unsubscribe();
   }, []);
 
+  const signUpNewUser = async (email, password) => {
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+    });
+
+    if (error) console.error("회원가입 중 에러: ", error.message);
+  };
+
+  const signInWithEmail = async (email, password) => {
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (error) console.error("이메일 로그인 에러: ", error.message);
+  };
+
   const signInWithGoogle = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
@@ -32,7 +50,7 @@ const SessionProvider = ({ children }) => {
       },
     });
 
-    if (error) console.error("로그인 에러: ", error.message);
+    if (error) console.error("구글 로그인 에러: ", error.message);
   };
 
   const signOut = async () => {
@@ -42,7 +60,15 @@ const SessionProvider = ({ children }) => {
   };
 
   return (
-    <SessionContext.Provider value={{ session, signInWithGoogle, signOut }}>
+    <SessionContext.Provider
+      value={{
+        session,
+        signUpNewUser,
+        signInWithEmail,
+        signInWithGoogle,
+        signOut,
+      }}
+    >
       {children}
     </SessionContext.Provider>
   );
