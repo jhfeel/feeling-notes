@@ -9,6 +9,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js";
 import SessionContext from "./contexts/SessionContext";
 import Profile from "./pages/Profile";
+import SignUp from "./pages/SignUp";
 
 const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
 const supabaseKey = process.env.REACT_APP_SUPABASE_KEY;
@@ -76,6 +77,7 @@ function App() {
   return (
     <Routes>
       <Route path="/login" element={<Login userNotes={userNotes} />} />
+      <Route path="/signup" element={<SignUp userNotes={userNotes} />} />
       <Route
         path="/"
         element={

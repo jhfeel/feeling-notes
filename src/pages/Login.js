@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import SessionContext from "../contexts/SessionContext";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import MenuBar from "../components/MenuBar";
 import Header from "../components/Header";
 import MobileBottomBar from "../components/MobileBottomBar";
@@ -11,6 +11,7 @@ export const Login = ({ userNotes }) => {
     useContext(SessionContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const titleElement = document.getElementsByTagName("title")[0];
@@ -35,6 +36,7 @@ export const Login = ({ userNotes }) => {
                 placeholder="이메일"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                autoComplete="email"
               />
               <input
                 className="login-input"
@@ -43,6 +45,7 @@ export const Login = ({ userNotes }) => {
                 placeholder="비밀번호"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                autoComplete="current-password"
               />
 
               <button
@@ -56,7 +59,10 @@ export const Login = ({ userNotes }) => {
                   비밀번호 찾기
                 </span>
                 <span className="login-additional-link"> | </span>
-                <span className="clickable login-additional-link">
+                <span
+                  className="clickable login-additional-link"
+                  onClick={() => navigate("/signup")}
+                >
                   회원가입하기
                 </span>
               </div>
