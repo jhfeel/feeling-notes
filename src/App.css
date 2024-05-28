@@ -298,3 +298,8 @@ textarea {
   gap: 30px;
   padding-top: 50px;
 }
+
+.profile-btn-container {
+  display: flex;
+  gap: 5px;
+}

@@ -1,20 +1,20 @@
 import { useContext, useEffect, useState } from "react";
 import SessionContext from "../contexts/SessionContext";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import MenuBar from "../components/MenuBar";
 import Header from "../components/Header";
 import MobileBottomBar from "../components/MobileBottomBar";
 import SideBar from "../components/SideBar";
 
-const SignUp = ({ userNotes }) => {
-  const { session, signUpNewUser } = useContext(SessionContext);
-  const [email, setEmail] = useState("");
+const UpdatePassword = ({ userNotes }) => {
+  const { session, updatePassword } = useContext(SessionContext);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const titleElement = document.getElementsByTagName("title")[0];
-    titleElement.innerText = "Feeling Notes - 회원가입";
+    titleElement.innerText = "Feeling Notes - 비밀번호 변경";
   }, []);
 
   const isPasswordValid = (password) => {
@@ -40,16 +40,25 @@ const SignUp = ({ userNotes }) => {
     return confirmPassword === password;
   };
 
-  const onSignUpClick = () => {
+  const onUpdatePasswordClick = async () => {
     if (!isPasswordValid(password) || !isPasswordMatching()) {
       alert("비밀번호를 다시 입력해 주세요.");
-    } else {
-      signUpNewUser(email, password);
+      return;
+    }
+
+    try {
+      const success = await updatePassword(password);
+      if (success) {
+        navigate("/profile");
+      }
+    } catch (error) {
+      console.error("Unexpected error: ", error);
+      alert("예기치 않은 에러가 발생했습니다. 다시 시도해 주세요.");
     }
   };
 
-  return session ? (
-    <Navigate to="/" />
+  return !session ? (
+    <Navigate to="/login" />
   ) : (
     <div className="container">
       <MenuBar />
@@ -57,17 +66,8 @@ const SignUp = ({ userNotes }) => {
         <Header />
         <div className="contents-container">
           <div className="login-container">
-            <h4>회원가입</h4>
-
+            <h4>비밀번호 변경</h4>
             <div className="email-login-box">
-              <input
-                className="login-input"
-                name="email"
-                type="email"
-                placeholder="이메일"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
               <input
                 className="login-input"
                 name="password"
@@ -92,8 +92,11 @@ const SignUp = ({ userNotes }) => {
               <div className="password-check">
                 {isPasswordMatching() ? "" : "비밀번호가 일치하지 않습니다"}
               </div>
-              <button className="login-btn clickable" onClick={onSignUpClick}>
-                회원가입
+              <button
+                className="login-btn clickable"
+                onClick={onUpdatePasswordClick}
+              >
+                변경
               </button>
             </div>
           </div>
@@ -105,4 +108,4 @@ const SignUp = ({ userNotes }) => {
   );
 };
 
-export default SignUp;
+export default UpdatePassword;

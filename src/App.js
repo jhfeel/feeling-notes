@@ -10,6 +10,7 @@ import { createClient } from "@supabase/supabase-js";
 import SessionContext from "./contexts/SessionContext";
 import Profile from "./pages/Profile";
 import SignUp from "./pages/SignUp";
+import UpdatePassword from "./pages/UpdatePassword";
 
 const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
 const supabaseKey = process.env.REACT_APP_SUPABASE_KEY;
@@ -78,6 +79,10 @@ function App() {
     <Routes>
       <Route path="/login" element={<Login userNotes={userNotes} />} />
       <Route path="/signup" element={<SignUp userNotes={userNotes} />} />
+      <Route
+        path="/update-password"
+        element={<UpdatePassword userNotes={userNotes} />}
+      />
       <Route
         path="/"
         element={
