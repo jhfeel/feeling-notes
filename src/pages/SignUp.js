@@ -12,7 +12,7 @@ const supabaseKey = process.env.REACT_APP_SUPABASE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 const SignUp = ({ userNotes }) => {
-  const { session } = useContext(SessionContext);
+  const { session, signUpNewUser } = useContext(SessionContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -38,6 +38,22 @@ const SignUp = ({ userNotes }) => {
     );
   };
 
+  const isPasswordMatching = () => {
+    if (confirmPassword.length === 0) {
+      return true;
+    }
+    return confirmPassword === password;
+  };
+
+  const onSignUpClick = () => {
+    if (!isPasswordValid(password) || !isPasswordMatching()) {
+      alert("비밀번호를 다시 입력해 주세요.");
+      return;
+    } else {
+      signUpNewUser(email, password);
+    }
+  };
+
   return session ? (
     <Navigate to="/" />
   ) : (
@@ -58,7 +74,6 @@ const SignUp = ({ userNotes }) => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-              <div></div>
               <input
                 className="login-input"
                 name="password"
@@ -67,7 +82,7 @@ const SignUp = ({ userNotes }) => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <div>
+              <div className="password-check">
                 {isPasswordValid(password)
                   ? ""
                   : "영문, 숫자, 특수문자를 포함해 8~15자로 입력해 주세요."}
@@ -80,12 +95,12 @@ const SignUp = ({ userNotes }) => {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
-              <div>
-                {confirmPassword === password
-                  ? ""
-                  : "비밀번호가 일치하지 않습니다"}
+              <div className="password-check">
+                {isPasswordMatching() ? "" : "비밀번호가 일치하지 않습니다"}
               </div>
-              <button className="login-btn clickable">회원가입</button>
+              <button className="login-btn clickable" onClick={onSignUpClick}>
+                회원가입
+              </button>
             </div>
           </div>
         </div>

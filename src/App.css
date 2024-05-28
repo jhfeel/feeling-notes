@@ -272,6 +272,13 @@ textarea {
   font-size: 10px;
 }
 
+.password-check {
+  color: red;
+  font-size: 8px;
+  text-align: left;
+  margin-top: -8px;
+}
+
 .google-login-btn {
   display: flex;
   justify-content: center;

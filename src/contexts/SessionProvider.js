@@ -25,12 +25,19 @@ const SessionProvider = ({ children }) => {
   }, []);
 
   const signUpNewUser = async (email, password) => {
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
     });
 
-    if (error) console.error("회원가입 중 에러: ", error.message);
+    console.log(data);
+
+    if (error) {
+      console.error("회원가입 중 에러: ", error.message);
+      if (error.message === "User already registered") {
+        alert("이미 등록된 계정입니다.");
+      }
+    }
   };
 
   const signInWithEmail = async (email, password) => {
