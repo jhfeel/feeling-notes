@@ -25,12 +25,10 @@ const SessionProvider = ({ children }) => {
   }, []);
 
   const signUpNewUser = async (email, password) => {
-    const { data, error } = await supabase.auth.signUp({
+    const { error } = await supabase.auth.signUp({
       email,
       password,
     });
-
-    console.log(data);
 
     if (error) {
       console.error("회원가입 중 에러: ", error.message);
@@ -46,7 +44,16 @@ const SessionProvider = ({ children }) => {
       password,
     });
 
-    if (error) console.error("이메일 로그인 에러: ", error.message);
+    if (error) {
+      console.error("이메일 로그인 에러: ", error.message);
+      if (!email || !password) {
+        alert("이메일과 비밀번호를 모두 입력해 주세요.");
+      } else if (error.message === "Invalid login credentials") {
+        alert("일치하는 회원 정보가 없습니다.");
+      } else {
+        alert(`로그인 에러: ${error.message}`);
+      }
+    }
   };
 
   const signInWithGoogle = async () => {
