@@ -12,7 +12,7 @@ const SessionProvider = ({ children }) => {
   useEffect(() => {
     const { data: authListener } = supabase.auth.onAuthStateChange(
       (event, session) => {
-        console.log(event, session);
+        // console.log("event: ", event, ", session: ", session);
         if (event === "SIGNED_OUT") {
           setSession(null);
         } else if (session) {
@@ -73,10 +73,20 @@ const SessionProvider = ({ children }) => {
     if (error) console.error("로그아웃 에러: ", error.message);
   };
 
-  const updatePassword = async (password) => {
-    const { error } = await supabase.auth.updateUser({
-      password,
+  const sendPasswordResetEmail = async (email) => {
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: process.env.REACT_APP_URL + "/update-password",
     });
+
+    if (error) {
+      alert(`전송 중 오류: ${error.message}`);
+    } else {
+      alert("비밀번호 변경 링크를 전송했습니다.");
+    }
+  };
+
+  const updatePassword = async (password) => {
+    const { error } = await supabase.auth.updateUser({ password });
 
     if (error) {
       console.error("비밀번호 변경 중 에러: ", error.message);
@@ -95,6 +105,17 @@ const SessionProvider = ({ children }) => {
     }
   };
 
+  const setUserSession = async (accessToken, refreshToken) => {
+    const { error } = await supabase.auth.setSession({
+      access_token: accessToken,
+      refresh_token: refreshToken,
+    });
+
+    if (error) {
+      console.error("setSession 에러: ", error.message);
+    }
+  };
+
   return (
     <SessionContext.Provider
       value={{
@@ -103,7 +124,9 @@ const SessionProvider = ({ children }) => {
         signInWithEmail,
         signInWithGoogle,
         signOut,
+        sendPasswordResetEmail,
         updatePassword,
+        setUserSession,
       }}
     >
       {children}

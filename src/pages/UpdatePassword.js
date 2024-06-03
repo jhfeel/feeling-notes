@@ -1,13 +1,14 @@
 import { useContext, useEffect, useState } from "react";
 import SessionContext from "../contexts/SessionContext";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import MenuBar from "../components/MenuBar";
 import Header from "../components/Header";
 import MobileBottomBar from "../components/MobileBottomBar";
 import SideBar from "../components/SideBar";
 
 const UpdatePassword = ({ userNotes }) => {
-  const { session, updatePassword } = useContext(SessionContext);
+  const { session, updatePassword, setUserSession } =
+    useContext(SessionContext);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
@@ -16,6 +17,19 @@ const UpdatePassword = ({ userNotes }) => {
     const titleElement = document.getElementsByTagName("title")[0];
     titleElement.innerText = "Feeling Notes - 비밀번호 변경";
   }, []);
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    const params = new URLSearchParams(hash.substring(1));
+    const accessToken = params.get("access_token");
+    const refreshToken = params.get("refresh_token");
+
+    if (!session && accessToken && refreshToken) {
+      setUserSession(accessToken, refreshToken);
+    } else {
+      console.error("Invalid or missing tokens");
+    }
+  }, [session, setUserSession]);
 
   const isPasswordValid = (password) => {
     const minLength = 8;
@@ -57,9 +71,7 @@ const UpdatePassword = ({ userNotes }) => {
     }
   };
 
-  return !session ? (
-    <Navigate to="/login" />
-  ) : (
+  return (
     <div className="container">
       <MenuBar />
       <div className="main">

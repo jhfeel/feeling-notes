@@ -11,6 +11,7 @@ import SessionContext from "./contexts/SessionContext";
 import Profile from "./pages/Profile";
 import SignUp from "./pages/SignUp";
 import UpdatePassword from "./pages/UpdatePassword";
+import FindPassword from "./pages/FindPassword";
 
 const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
 const supabaseKey = process.env.REACT_APP_SUPABASE_KEY;
@@ -82,6 +83,10 @@ function App() {
       <Route
         path="/update-password"
         element={<UpdatePassword userNotes={userNotes} />}
+      />
+      <Route
+        path="/find-password"
+        element={<FindPassword userNotes={userNotes} />}
       />
       <Route
         path="/"

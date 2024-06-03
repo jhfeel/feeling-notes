@@ -13,6 +13,12 @@ export const Login = ({ userNotes }) => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      signInWithEmail(email, password);
+    }
+  };
+
   useEffect(() => {
     const titleElement = document.getElementsByTagName("title")[0];
     titleElement.innerText = "Feeling Notes - 로그인";
@@ -36,6 +42,7 @@ export const Login = ({ userNotes }) => {
                 placeholder="이메일"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                onKeyDown={handleKeyDown}
                 autoComplete="email"
               />
               <input
@@ -45,6 +52,7 @@ export const Login = ({ userNotes }) => {
                 placeholder="비밀번호"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                onKeyDown={handleKeyDown}
                 autoComplete="current-password"
               />
 
@@ -55,7 +63,10 @@ export const Login = ({ userNotes }) => {
                 로그인
               </button>
               <div>
-                <span className="clickable login-additional-link">
+                <span
+                  className="clickable login-additional-link"
+                  onClick={() => navigate("/find-password")}
+                >
                   비밀번호 찾기
                 </span>
                 <span className="login-additional-link"> | </span>
