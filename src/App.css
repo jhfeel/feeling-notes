@@ -303,3 +303,14 @@ textarea {
   display: flex;
   gap: 5px;
 }
+
+/* 필터링 */
+.FilterBox {
+  width: 400px;
+  max-width: 90%;
+  background-color: #ececec;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

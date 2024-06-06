@@ -7,13 +7,15 @@ const EmotionButton = ({
   onSelectedEmotionListChange,
 }) => {
   const [isSelected, setIsSelected] = useState(false);
+
   useEffect(() => {
     if (selectedEmotionList && selectedEmotionList.includes(emotionName)) {
       setIsSelected(true);
     }
   }, [selectedEmotionList, emotionName]);
+
   const handleClick = () => {
-    if (currentPage === "write") {
+    if (currentPage === "write" || currentPage === "filter") {
       if (isSelected) {
         onSelectedEmotionListChange((currentItems) =>
           currentItems.filter((element) => {

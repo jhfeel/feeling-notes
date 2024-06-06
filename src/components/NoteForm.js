@@ -3,6 +3,7 @@ import EmotionButton from "../components/EmotionButton";
 import { formatDateTime } from "../utils/dateTime";
 import ActionButton from "../components/ActionButton";
 import { useNavigate } from "react-router-dom";
+import emotionList from "./../data/emotionList";
 
 const NoteForm = ({ onCreate, noteItemToEdit, onEdit }) => {
   const isEditMode = noteItemToEdit != null;
@@ -24,35 +25,6 @@ const NoteForm = ({ onCreate, noteItemToEdit, onEdit }) => {
   const [memo, setMemo] = useState(isEditMode ? noteItemToEdit.memo : "");
   const navigate = useNavigate();
 
-  const emotionList = [
-    "감사 🙏",
-    "만족 😌",
-    "희망 🌟",
-    "행복 😊",
-    "기쁨 😁",
-    "쾌감 😁",
-    "신남 🤩",
-    "열망 😍",
-    "자랑스러움 😎",
-    "성취감 🏆",
-    "다정함 🥰",
-    "기대감 😃",
-    "사랑 💕",
-    "우울 😞",
-    "불안 😟",
-    "걱정 😦",
-    "화남 😠",
-    "자신 없음 🙁",
-    "절망적 😩",
-    "부담감 😫",
-    "창피함 😳",
-    "속상함 😢",
-    "슬픔 😭",
-    "실망 😕",
-    "미안함 😓",
-    "귀찮음 😒",
-    "후회 😔",
-  ];
   const emotionButtonList = [];
   emotionList.forEach((emotion, index) => {
     emotionButtonList.push(
