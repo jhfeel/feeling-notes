@@ -42,6 +42,7 @@ const EmotionButton = ({
         isSelected || currentPage === "home" || currentPage === "detail"
           ? "EmotionButton-selected"
           : "",
+        currentPage === "write" || currentPage === "filter" ? "clickable" : "",
       ].join(" ")}
       onClick={handleClick}
     >

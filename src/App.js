@@ -12,7 +12,6 @@ import Profile from "./pages/Profile";
 import SignUp from "./pages/SignUp";
 import UpdatePassword from "./pages/UpdatePassword";
 import FindPassword from "./pages/FindPassword";
-import FilterBox from "./components/FilterBox";
 
 const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
 const supabaseKey = process.env.REACT_APP_SUPABASE_KEY;
@@ -79,7 +78,6 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/filter" element={<FilterBox userNotes={userNotes} />} />
       <Route path="/login" element={<Login userNotes={userNotes} />} />
       <Route path="/signup" element={<SignUp userNotes={userNotes} />} />
       <Route
@@ -93,7 +91,11 @@ function App() {
       <Route
         path="/"
         element={
-          session ? <Home userNotes={userNotes} /> : <Navigate to="/login" />
+          session ? (
+            <Home userNotes={userNotes} setUserNotes={setUserNotes} />
+          ) : (
+            <Navigate to="/login" />
+          )
         }
       />
       <Route

@@ -1,6 +1,6 @@
-const ActionButton = ({ type, onClick }) => {
-  let btnText = "";
-  let btnColor = "";
+const ActionButton = ({ type, text, color, onClick }) => {
+  let btnText = text || "";
+  let btnColor = color || "";
 
   if (type === "submit") {
     btnText = "작성완료";
