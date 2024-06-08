@@ -5,9 +5,8 @@ import SideBar from "../components/SideBar";
 import NoteItem from "../components/NoteItem";
 import { useEffect, useState } from "react";
 import emotionList from "../data/emotionList";
-import { formatDate } from "../utils/dateTime";
 
-const Home = ({ userNotes, setUserNotes }) => {
+const Home = ({ userNotes }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedEmotion, setSelectedEmotion] = useState(null);
 
@@ -23,6 +22,7 @@ const Home = ({ userNotes, setUserNotes }) => {
       note.situation.includes(searchTerm) ||
       note.thoughts.includes(searchTerm) ||
       note.memo.includes(searchTerm);
+
     return matchesEmotion && matchesSearch;
   });
 
@@ -51,10 +51,6 @@ const Home = ({ userNotes, setUserNotes }) => {
     setSearchTerm("");
     setSelectedEmotion("");
   };
-
-  useEffect(() => {
-    console.log("zz", selectedEmotion);
-  }, [selectedEmotion]);
 
   useEffect(() => {
     const titleElement = document.getElementsByTagName("title")[0];
