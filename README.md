@@ -3,9 +3,10 @@
 ## 애플리케이션 소개
 
 감정과 생각을 기록하는 서비스입니다.
-[FEELING NOTES 바로가기](https://feeling-notes.vercel.app/)
+<br>
+[📘 FEELING NOTES 바로가기](https://feeling-notes.vercel.app/)
 
-<br><br><br>
+<br><br><br><br><br>
 
 ## 애플리케이션 개발 목적
 
@@ -13,7 +14,7 @@
 - 이 앱은 감정과 생각을 꾸준히 기록하여 자신의 감정 패턴을 이해하고 덜 반응적으로 대처할 수 있도록 돕습니다.
 - 또한 자신의 생각에 대해 피드백 하게 함으로써 보다 나은 삶으로 나아가도록 돕습니다.
 
-<br><br><br>
+<br><br><br><br><br>
 
 ## 주요 기술 스택
 
@@ -21,7 +22,7 @@
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
 
-<br><br><br>
+<br><br><br><br><br>
 
 ## 주요 기능
 
@@ -39,3 +40,5 @@
 
 - 보고 싶은 감정 필터링
 - 상황, 생각, 메모에 대한 검색
+
+<br><br><br>
