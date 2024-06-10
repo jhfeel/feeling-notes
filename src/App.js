@@ -74,7 +74,7 @@ function App() {
 
   useEffect(() => {
     getUserNotes();
-  }, []);
+  }, [userNotes]);
 
   return (
     <Routes>
