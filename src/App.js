@@ -38,7 +38,8 @@ function App() {
       console.error("노트 작성 중 에러", error.message);
     }
 
-    setUserNotes([...userNotes, newNote]);
+    getUserNotes();
+    // setUserNotes([...userNotes, newNote]);
   };
 
   const onEdit = async (targetNoteId, editedNote) => {
@@ -52,11 +53,12 @@ function App() {
       console.error("노트 수정 중 에러", error.message);
     }
 
-    setUserNotes(
-      userNotes.map((note) =>
-        note.id === targetNoteId ? { id: targetNoteId, ...editedNote } : note
-      )
-    );
+    getUserNotes();
+    // setUserNotes(
+    //   userNotes.map((note) =>
+    //     note.id === targetNoteId ? { id: targetNoteId, ...editedNote } : note
+    //   )
+    // );
   };
 
   const onRemove = async (targetNoteId) => {
@@ -69,12 +71,13 @@ function App() {
       console.error("노트 삭제 중 에러", error);
     }
 
-    setUserNotes(userNotes.filter((note) => note.id !== Number(targetNoteId)));
+    getUserNotes();
+    // setUserNotes(userNotes.filter((note) => note.id !== Number(targetNoteId)));
   };
 
   useEffect(() => {
     getUserNotes();
-  }, [userNotes]);
+  }, []);
 
   return (
     <Routes>
