@@ -32,7 +32,10 @@ function App() {
   };
 
   const onCreate = async (newNote) => {
-    const { error } = await supabase.from("notes").insert(newNote).select("*");
+    const { data, error } = await supabase
+      .from("notes")
+      .insert(newNote)
+      .select("*");
 
     if (error) {
       console.error("노트 작성 중 에러", error.message);
